@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>فارم مرغداری - مدیریت مصارف و فروش</title>
-  <!-- Manifest for PWA -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D9%85%D8%B1%D8%BA%D8%AF%D8%A7%D8%B1%DB%8C%22%2C%22short_name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f5f7fa%22%2C%22theme_color%22%3A%22%232d6a4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'45'%20fill%3D'%232d6a4f'%2F%3E%3Ctext%20x%3D'50'%20y%3D'70'%20font-size%3D'55'%20text-anchor%3D'middle'%20fill%3D'white'%3E%F0%9F%90%94%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <title>فارم ارغندی | مدیریت مرغداری</title>
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22short_name%22%3A%22%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f4ef%22%2C%22theme_color%22%3A%22%231b4d3f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'45'%20fill%3D'%231b4d3f'%2F%3E%3Ctext%20x%3D'50'%20y%3D'70'%20font-size%3D'50'%20text-anchor%3D'middle'%20fill%3D'white'%3E%F0%9F%90%94%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
   <style>
     * {
       margin: 0;
@@ -14,81 +14,76 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      background: #f0f4ef;
+      background: #eaf0e6;
       padding: 12px;
       direction: rtl;
-      color: #1e2b20;
+      color: #1a2e1f;
     }
     .app-container {
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
-      background: white;
-      border-radius: 32px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-      padding: 18px;
       background: #ffffff;
+      border-radius: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      padding: 20px;
+      background: linear-gradient(145deg, #ffffff 0%, #f9fdf9 100%);
     }
-    h1 {
+    .farm-header {
+      background: #1b4d3f;
+      color: white;
+      border-radius: 28px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 8px 18px rgba(27,77,63,0.25);
+    }
+    .farm-header h1 {
+      font-size: 1.9rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 1.8rem;
-      color: #2d6a4f;
-      margin-bottom: 15px;
-      background: #e9f5ec;
-      padding: 12px 18px;
-      border-radius: 28px;
     }
-    h1 span {
-      background: #2d6a4f;
-      color: white;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
+    .profit-badge {
+      background: #f9c74f;
+      color: #1b4d3f;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+      gap: 6px;
     }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 12px;
       margin-bottom: 20px;
     }
     .card {
-      background: #f9fdf9;
-      border-radius: 20px;
-      padding: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-      border: 1px solid #ddebe0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #f4f9f5;
+      border-radius: 22px;
+      padding: 16px 12px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.04);
+      border: 1px solid #d0e0d4;
       text-align: center;
     }
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
-    .card-value {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #081c15;
-    }
-    .card-label {
-      font-size: 0.8rem;
-      color: #4a6b56;
-    }
+    .card-icon { font-size: 2rem; margin-bottom: 4px; }
+    .card-value { font-weight: 700; font-size: 1.2rem; color: #0b2b1d; }
+    .card-label { font-size: 0.75rem; color: #4a6b56; }
     .section-title {
-      font-weight: 600;
+      font-weight: 700;
       margin: 18px 0 10px;
+      color: #1b4d3f;
+      border-bottom: 2px solid #b7d7c4;
+      padding-bottom: 5px;
       display: flex;
       align-items: center;
       gap: 6px;
-      color: #1b4d3f;
-      border-bottom: 2px solid #cfe5d8;
-      padding-bottom: 5px;
     }
     .form-row {
       display: flex;
@@ -99,20 +94,16 @@
     }
     input, select, button {
       padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid #d0dfd4;
+      border-radius: 16px;
+      border: 1px solid #c2d5c9;
       background: white;
       font-size: 0.9rem;
       outline: none;
       transition: 0.2s;
-      font-family: inherit;
     }
-    input:focus, select:focus {
-      border-color: #40916c;
-      box-shadow: 0 0 0 3px rgba(45,106,79,0.15);
-    }
+    input:focus, select:focus { border-color: #2d6a4f; box-shadow: 0 0 0 3px rgba(45,106,79,0.2); }
     button {
-      background: #2d6a4f;
+      background: #1b4d3f;
       color: white;
       border: none;
       font-weight: 600;
@@ -120,20 +111,24 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      background: #1b4d3f;
-      letter-spacing: 0.3px;
+      background: #2d6a4f;
     }
-    button.danger {
-      background: #bc4742;
-    }
-    button.secondary {
-      background: #5a7d6a;
+    button.danger { background: #b23b2c; }
+    button.secondary { background: #5f7e6b; }
+    .file-attach {
+      background: #f1f7f2;
+      padding: 6px 10px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
     }
     .expense-list, .sale-list {
       background: #f6faf7;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 10px;
-      max-height: 220px;
+      max-height: 240px;
       overflow-y: auto;
       margin: 10px 0;
     }
@@ -141,89 +136,78 @@
       display: flex;
       justify-content: space-between;
       background: white;
-      margin-bottom: 6px;
-      padding: 8px 12px;
-      border-radius: 14px;
-      font-size: 0.85rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      margin-bottom: 7px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .doc-thumb {
+      background: #e2e8e0;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      margin-left: 6px;
     }
     .chart-container {
-      background: #f6faf7;
-      border-radius: 20px;
+      background: #f2f7f3;
+      border-radius: 24px;
       padding: 15px;
       margin: 15px 0;
     }
-    canvas {
-      width: 100%;
-      height: auto;
-      max-height: 220px;
-    }
-    .partners-row {
+    canvas { width: 100%; height: auto; max-height: 200px; }
+    .partner-card {
+      background: #eef4ef;
+      border-radius: 18px;
+      padding: 8px 14px;
       display: flex;
+      align-items: center;
       gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
+      margin: 5px 0;
     }
-    .badge {
-      background: #e9d8a6;
-      color: #5a4a1a;
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    hr {
-      border: 0.5px solid #ddebe0;
-      margin: 12px 0;
-    }
-    .flex-between {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    @media (max-width: 500px) {
-      .form-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-    }
+    hr { border: 0.5px solid #cbdcd0; margin: 14px 0; }
+    @media (max-width: 500px) { .form-row { flex-direction: column; align-items: stretch; } }
   </style>
 </head>
 <body>
 <div class="app-container">
-  <h1>
-    <span>🐔</span> فارم مرغداری (۱۴,۰۰۰ چوچه)
-  </h1>
-
-  <!-- آمار کلی -->
-  <div class="cards-grid">
-    <div class="card"><div class="card-icon">🐣</div><div class="card-value" id="totalChicks">14,000</div><div class="card-label">چوچه اولیه</div></div>
-    <div class="card"><div class="card-icon">💀</div><div class="card-value" id="totalDeaths">0</div><div class="card-label">تلفات کل</div></div>
-    <div class="card"><div class="card-icon">📉</div><div class="card-value" id="remainingBirds">14,000</div><div class="card-label">موجودی زنده</div></div>
-    <div class="card"><div class="card-icon">💰</div><div class="card-value" id="totalExpense">۰</div><div class="card-label">مصارف کل (افغانی)</div></div>
-    <div class="card"><div class="card-icon">🛒</div><div class="card-value" id="totalSales">۰</div><div class="card-label">فروش کل</div></div>
-    <div class="card"><div class="card-icon">📊</div><div class="card-value" id="profitLoss">۰</div><div class="card-label">فایده / تاوان</div></div>
+  <!-- هدر با نام فارم و فایده/تاوان -->
+  <div class="farm-header">
+    <h1>🐔 فارم ارغندی</h1>
+    <div class="profit-badge" id="profitHeader">
+      <span>📊</span> <span id="headerProfitText">۰ ؋</span>
+    </div>
   </div>
 
-  <!-- بخش شرکا -->
-  <div class="section-title">🤝 شرکا و فیصدی</div>
+  <!-- کارت های آماری -->
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon">🐣</div><div class="card-value">14,000</div><div class="card-label">چوچه اولیه</div></div>
+    <div class="card"><div class="card-icon">💀</div><div class="card-value" id="totalDeaths">0</div><div class="card-label">تلفات کل</div></div>
+    <div class="card"><div class="card-icon">🐓</div><div class="card-value" id="remainingBirds">14,000</div><div class="card-label">موجودی زنده</div></div>
+    <div class="card"><div class="card-icon">💸</div><div class="card-value" id="totalExpense">۰</div><div class="card-label">مصارف کل</div></div>
+    <div class="card"><div class="card-icon">🛒</div><div class="card-value" id="totalSales">۰</div><div class="card-label">فروش کل</div></div>
+    <div class="card"><div class="card-icon">⚖️</div><div class="card-value" id="profitLossCard">۰</div><div class="card-label">فایده / تاوان</div></div>
+  </div>
+
+  <!-- بخش شرکا با سرمایه پولی -->
+  <div class="section-title">🤝 شرکا و سرمایه (افغانی)</div>
   <div class="form-row">
     <input type="text" id="partnerName" placeholder="اسم شریک" style="flex:2">
-    <input type="number" id="partnerShare" placeholder="فیصدی سهم" min="0" max="100" step="0.1" style="flex:1">
+    <input type="number" id="partnerCapital" placeholder="سرمایه (افغانی)" min="0" step="1000" style="flex:2">
     <button onclick="addPartner()">➕ افزودن شریک</button>
   </div>
-  <div id="partnersList" class="partners-row" style="margin-bottom:8px;"></div>
-  <small>مجموع فیصدی: <span id="totalSharePercent">0</span>٪</small>
+  <div id="partnersContainer"></div>
+  <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span> | فیصدی سهم خودکار محاسبه میشود</small>
 
-  <!-- ثبت تلفات روزانه -->
-  <div class="section-title">⚠️ تلفات روزانه</div>
+  <!-- تلفات روزانه -->
+  <div class="section-title">⚠️ ثبت تلفات روزانه</div>
   <div class="form-row">
     <input type="number" id="deathCount" placeholder="تعداد تلفات امروز" min="0" value="0">
     <button onclick="recordDeath()">ثبت تلفات</button>
   </div>
 
-  <!-- مصارف روزمره -->
-  <div class="section-title">🧾 ثبت مصارف</div>
+  <!-- مصارف همراه با آپلود سند -->
+  <div class="section-title">🧾 ثبت مصارف (با سند)</div>
   <div class="form-row">
     <select id="expenseCategory">
       <option value="غذا">🍚 دانه/غذا</option>
@@ -232,13 +216,18 @@
       <option value="کرایه موتر">🚚 کرایه موتر</option>
       <option value="معاش کارمند">👷 معاش کارمند</option>
       <option value="دوایی">🧪 دوا</option>
-      <option value="کود فروش">🧹 کود (فروش/مصرف)</option>
-      <option value="اسناد">📄 اسناد کرایه دوا</option>
+      <option value="کود">🧹 کود</option>
+      <option value="اسناد کرایه دوا">📄 اسناد کرایه دوا</option>
       <option value="سایر">📌 سایر</option>
     </select>
     <input type="number" id="expenseAmount" placeholder="مبلغ (افغانی)" min="0" step="0.1">
     <input type="date" id="expenseDate">
-    <button onclick="addExpense()">➕ ثبت مصرف</button>
+    <div class="file-attach">
+      <label for="expenseDoc" style="cursor:pointer;">📎 سند</label>
+      <input type="file" id="expenseDoc" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(this)">
+      <span id="fileNameDisplay">انتخاب نشده</span>
+    </div>
+    <button onclick="addExpense()">ثبت مصرف</button>
   </div>
   <div class="expense-list" id="expenseListContainer"></div>
 
@@ -252,25 +241,25 @@
   </div>
   <div class="sale-list" id="saleListContainer"></div>
 
-  <!-- نمودار گراف -->
+  <!-- نمودار -->
   <div class="chart-container">
-    <div style="display: flex; justify-content: space-between;">
-      <span>📈 نمودار مصارف/فروش/فایده</span>
-      <span class="badge" id="chartLabel">هفته جاری</span>
+    <div style="display:flex; justify-content:space-between;">
+      <span>📈 مصارف / فروش / فایده</span>
+      <span id="chartLabel" style="background:#d4e2d7; padding:2px 12px; border-radius:14px;">هفته جاری</span>
     </div>
-    <canvas id="financeChart" width="400" height="160"></canvas>
+    <canvas id="financeChart" width="400" height="170"></canvas>
   </div>
 
-  <div class="flex-between">
-    <button onclick="resetDemoData()" class="secondary">🔄 بارگذاری دیتای نمونه</button>
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <button onclick="loadDemoData()" class="secondary">🔄 دیتای نمونه (ارغندی)</button>
     <button onclick="clearAllData()" class="danger">🗑️ حذف همه داده‌ها</button>
   </div>
-  <small style="color:#4a6b56; margin-top:8px; display:block;">PWA آماده | تمام داده در مرورگر ذخیره میشود (localStorage)</small>
+  <small style="color:#4a6b56; margin-top:8px; display:block;">تمام اطلاعات در Local Storage ذخیره میشود | PWA آماده</small>
 </div>
 
 <script>
-  (function() {
-    // ---------- PWA & Service Worker (ساده) ----------
+  (() => {
+    // Service Worker ساده برای PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(
@@ -279,154 +268,187 @@
       });
     }
 
-    // ---------- state ----------
+    // ---------- STATE ----------
     const INITIAL_CHICKS = 14000;
-    let partners = [];               // { name, share }
-    let deaths = 0;                 // total cumulative deaths
-    let expenses = [];             // { id, category, amount, date }
-    let sales = [];                // { id, birdCount, pricePerBird, total, date }
+    let partners = [];            // { name, capital }
+    let deaths = 0;
+    let expenses = [];           // { id, category, amount, date, docName, docDataUrl }
+    let sales = [];              // { id, birdCount, pricePerBird, total, date }
+    let selectedFileData = null; // برای فایل ضمیمه موقت
 
-    // Load from localStorage
-    function loadData() {
-      const stored = localStorage.getItem('poultry_farm_data');
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          partners = parsed.partners || [];
-          deaths = parsed.deaths || 0;
-          expenses = parsed.expenses || [];
-          sales = parsed.sales || [];
-        } catch (e) { resetToDefault(); }
-      } else {
-        resetToDefault();
-      }
-    }
-
-    function saveData() {
-      localStorage.setItem('poultry_farm_data', JSON.stringify({
+    // ذخیره و بازیابی localStorage
+    function saveToStorage() {
+      localStorage.setItem('arghandi_farm_v2', JSON.stringify({
         partners, deaths, expenses, sales
       }));
     }
 
-    function resetToDefault() {
+    function loadFromStorage() {
+      const raw = localStorage.getItem('arghandi_farm_v2');
+      if (raw) {
+        try {
+          const data = JSON.parse(raw);
+          partners = data.partners || [];
+          deaths = data.deaths || 0;
+          expenses = data.expenses || [];
+          sales = data.sales || [];
+        } catch (e) { setDemoData(); }
+      } else {
+        setDemoData();
+      }
+    }
+
+    function setDemoData() {
       partners = [
-        { name: 'احمد', share: 40 },
-        { name: 'محمود', share: 35 },
-        { name: 'کریم', share: 25 }
+        { name: 'احمد', capital: 200000 },
+        { name: 'محمود', capital: 500000 },
+        { name: 'کریم', capital: 300000 }
       ];
-      deaths = 45; // مثال تلفات
+      deaths = 52;
       expenses = [
-        { id: Date.now() + 1, category: 'غذا', amount: 12500, date: '2026-05-10' },
-        { id: Date.now() + 2, category: 'واکسین', amount: 3200, date: '2026-05-09' },
-        { id: Date.now() + 3, category: 'ذغال', amount: 1800, date: '2026-05-08' },
-        { id: Date.now() + 4, category: 'معاش کارمند', amount: 15000, date: '2026-05-07' },
-        { id: Date.now() + 5, category: 'کرایه موتر', amount: 2400, date: '2026-05-06' },
+        { id: Date.now()+1, category: 'غذا', amount: 18500, date: '2026-05-10', docName: 'بل_غذا.jpg', docDataUrl: '' },
+        { id: Date.now()+2, category: 'واکسین', amount: 4200, date: '2026-05-09', docName: '', docDataUrl: '' },
+        { id: Date.now()+3, category: 'ذغال', amount: 2100, date: '2026-05-08', docName: 'رسید_ذغال.png', docDataUrl: '' },
+        { id: Date.now()+4, category: 'معاش کارمند', amount: 14000, date: '2026-05-07', docName: 'معاش_ثبت.pdf', docDataUrl: '' },
+        { id: Date.now()+5, category: 'کرایه موتر', amount: 3000, date: '2026-05-06', docName: '', docDataUrl: '' },
       ];
       sales = [
-        { id: Date.now() + 10, birdCount: 120, pricePerBird: 210, total: 25200, date: '2026-05-11' },
-        { id: Date.now() + 11, birdCount: 85, pricePerBird: 205, total: 17425, date: '2026-05-10' },
+        { id: Date.now()+10, birdCount: 150, pricePerBird: 215, total: 32250, date: '2026-05-11' },
+        { id: Date.now()+11, birdCount: 95, pricePerBird: 210, total: 19950, date: '2026-05-10' },
       ];
-      saveData();
+      saveToStorage();
     }
 
-    // helper
-    function formatMoney(value) {
-      return Number(value).toLocaleString('fa-AF', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' ؋';
+    // محاسبات
+    function totalCapital() {
+      return partners.reduce((sum, p) => sum + (parseFloat(p.capital) || 0), 0);
     }
-
+    function partnerSharePercent(capital) {
+      const total = totalCapital();
+      return total > 0 ? ((capital / total) * 100).toFixed(2) : 0;
+    }
     function getRemainingBirds() {
       return Math.max(0, INITIAL_CHICKS - deaths);
     }
-
     function totalExpenses() {
-      return expenses.reduce((sum, e) => sum + (parseFloat(e.amount) || 0), 0);
+      return expenses.reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
     }
-
     function totalSalesAmount() {
-      return sales.reduce((sum, s) => sum + (parseFloat(s.total) || 0), 0);
+      return sales.reduce((s, sale) => s + (parseFloat(sale.total) || 0), 0);
     }
-
-    function profitLossValue() {
+    function profitLoss() {
       return totalSalesAmount() - totalExpenses();
     }
+    function formatMoney(val) {
+      return Number(val).toLocaleString('fa-AF', { maximumFractionDigits: 0 }) + ' ؋';
+    }
 
-    // Update UI
+    // به‌روزرسانی UI
     function refreshUI() {
       document.getElementById('totalDeaths').innerText = deaths.toLocaleString('fa-AF');
       document.getElementById('remainingBirds').innerText = getRemainingBirds().toLocaleString('fa-AF');
       document.getElementById('totalExpense').innerText = formatMoney(totalExpenses());
       document.getElementById('totalSales').innerText = formatMoney(totalSalesAmount());
-      const pl = profitLossValue();
-      const plElem = document.getElementById('profitLoss');
-      plElem.innerText = formatMoney(pl);
-      plElem.style.color = pl >= 0 ? '#2d6a4f' : '#bc4742';
-
+      const pl = profitLoss();
+      document.getElementById('profitLossCard').innerText = formatMoney(pl);
+      document.getElementById('headerProfitText').innerText = formatMoney(pl);
+      const headerBadge = document.getElementById('profitHeader');
+      headerBadge.style.background = pl >= 0 ? '#f9c74f' : '#f9844a';
+      
       renderPartners();
       renderExpenseList();
       renderSaleList();
       drawChart();
-      saveData();
+      saveToStorage();
     }
 
+    // شرکا
     function renderPartners() {
-      const container = document.getElementById('partnersList');
-      const totalShare = partners.reduce((s, p) => s + (parseFloat(p.share) || 0), 0);
-      document.getElementById('totalSharePercent').innerText = totalShare.toFixed(1);
-      container.innerHTML = partners.map((p, idx) => 
-        `<span class="badge" style="display:inline-flex; align-items:center; gap:4px; margin:3px;">
-          ${p.name} (${p.share}٪) 
-          <button style="background:transparent; border:none; color:#8b0000; cursor:pointer; padding:0 4px;" onclick="removePartner(${idx})">✕</button>
-        </span>`
-      ).join('');
-    }
-
-    window.removePartner = (index) => {
-      partners.splice(index, 1);
-      refreshUI();
-    };
-
-    window.addPartner = () => {
-      const name = document.getElementById('partnerName').value.trim();
-      const share = parseFloat(document.getElementById('partnerShare').value);
-      if (!name || isNaN(share) || share <= 0 || share > 100) {
-        alert('لطفاً اسم و فیصدی معتبر وارد کنید');
+      const container = document.getElementById('partnersContainer');
+      document.getElementById('totalCapital').innerText = formatMoney(totalCapital());
+      if (partners.length === 0) {
+        container.innerHTML = '<div style="color:#6b7c6e; padding:6px;">هیچ شریکی ثبت نشده</div>';
         return;
       }
-      partners.push({ name, share });
+      container.innerHTML = partners.map((p, idx) => {
+        const share = partnerSharePercent(p.capital);
+        return `<div class="partner-card">
+          <strong>${p.name}</strong> : سرمایه ${formatMoney(p.capital)} (${share}٪)
+          <button style="margin-right:auto; background:none; border:none; color:#a33; cursor:pointer;" onclick="window.removePartner(${idx})">✕</button>
+        </div>`;
+      }).join('');
+    }
+    window.removePartner = (index) => { partners.splice(index,1); refreshUI(); };
+    window.addPartner = () => {
+      const name = document.getElementById('partnerName').value.trim();
+      const capital = parseFloat(document.getElementById('partnerCapital').value);
+      if (!name || isNaN(capital) || capital <= 0) return alert('اسم و سرمایه معتبر وارد کنید');
+      partners.push({ name, capital });
       document.getElementById('partnerName').value = '';
-      document.getElementById('partnerShare').value = '';
+      document.getElementById('partnerCapital').value = '';
       refreshUI();
     };
 
+    // تلفات
     window.recordDeath = () => {
-      const count = parseInt(document.getElementById('deathCount').value, 10);
-      if (isNaN(count) || count < 0) return;
-      deaths += count;
-      document.getElementById('deathCount').value = 0;
-      refreshUI();
+      const val = parseInt(document.getElementById('deathCount').value, 10);
+      if (!isNaN(val) && val > 0) {
+        deaths += val;
+        document.getElementById('deathCount').value = 0;
+        refreshUI();
+      }
     };
 
+    // مدیریت فایل ضمیمه
+    window.handleFileSelect = (input) => {
+      const file = input.files[0];
+      const display = document.getElementById('fileNameDisplay');
+      if (file) {
+        display.textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          selectedFileData = { name: file.name, dataUrl: e.target.result };
+        };
+        reader.readAsDataURL(file);
+      } else {
+        display.textContent = 'انتخاب نشده';
+        selectedFileData = null;
+      }
+    };
+
+    // ثبت مصرف
     window.addExpense = () => {
       const category = document.getElementById('expenseCategory').value;
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const date = document.getElementById('expenseDate').value || new Date().toISOString().slice(0,10);
-      if (isNaN(amount) || amount <= 0) {
-        alert('مبلغ مصرف را وارد کنید');
-        return;
-      }
-      expenses.push({ id: Date.now(), category, amount, date });
+      if (isNaN(amount) || amount <= 0) return alert('مبلغ مصرف را وارد کنید');
+      
+      const docName = selectedFileData ? selectedFileData.name : '';
+      const docDataUrl = selectedFileData ? selectedFileData.dataUrl : '';
+      
+      expenses.push({
+        id: Date.now(),
+        category,
+        amount,
+        date,
+        docName,
+        docDataUrl
+      });
+      
+      // ریست فایل
       document.getElementById('expenseAmount').value = '';
+      document.getElementById('expenseDoc').value = '';
+      document.getElementById('fileNameDisplay').textContent = 'انتخاب نشده';
+      selectedFileData = null;
       refreshUI();
     };
 
+    // ثبت فروش
     window.addSale = () => {
       const birdCount = parseInt(document.getElementById('saleBirdCount').value, 10);
       const pricePerBird = parseFloat(document.getElementById('salePricePerBird').value);
       const date = document.getElementById('saleDate').value || new Date().toISOString().slice(0,10);
-      if (isNaN(birdCount) || birdCount <= 0 || isNaN(pricePerBird) || pricePerBird <= 0) {
-        alert('تعداد و قیمت فروش را درست وارد کنید');
-        return;
-      }
+      if (isNaN(birdCount) || birdCount <=0 || isNaN(pricePerBird) || pricePerBird<=0) return alert('مقادیر فروش صحیح نیست');
       const total = birdCount * pricePerBird;
       sales.push({ id: Date.now(), birdCount, pricePerBird, total, date });
       document.getElementById('saleBirdCount').value = '';
@@ -436,19 +458,23 @@
 
     function renderExpenseList() {
       const container = document.getElementById('expenseListContainer');
-      if (expenses.length === 0) {
-        container.innerHTML = '<div style="padding:12px;text-align:center;color:#6b7c6e;">مصرفی ثبت نشده</div>';
+      if (!expenses.length) {
+        container.innerHTML = '<div style="padding:12px;text-align:center;">مصرفی ثبت نشده</div>';
         return;
       }
-      container.innerHTML = expenses.slice().reverse().map(e => 
-        `<div class="list-item"><span>${e.category} - ${e.date}</span> <strong>${formatMoney(e.amount)}</strong></div>`
-      ).join('');
+      container.innerHTML = expenses.slice().reverse().map(e => {
+        const docIcon = e.docName ? `<span class="doc-thumb" title="${e.docName}">📎 سند</span>` : '';
+        return `<div class="list-item">
+          <span>${e.category} ${docIcon} - ${e.date}</span>
+          <strong>${formatMoney(e.amount)}</strong>
+        </div>`;
+      }).join('');
     }
 
     function renderSaleList() {
       const container = document.getElementById('saleListContainer');
-      if (sales.length === 0) {
-        container.innerHTML = '<div style="padding:12px;text-align:center;color:#6b7c6e;">فروشی ثبت نشده</div>';
+      if (!sales.length) {
+        container.innerHTML = '<div style="padding:12px;text-align:center;">فروشی ثبت نشده</div>';
         return;
       }
       container.innerHTML = sales.slice().reverse().map(s => 
@@ -456,67 +482,55 @@
       ).join('');
     }
 
-    // رسم نمودار با Canvas
     function drawChart() {
       const canvas = document.getElementById('financeChart');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const width = canvas.parentElement.clientWidth - 30;
-      canvas.width = Math.max(250, width);
-      canvas.height = 180;
-
-      // داده های تجمعی ساده: نمایش مصارف کل، فروش کل، فایده
-      const expenseTotal = totalExpenses();
-      const saleTotal = totalSalesAmount();
-      const profit = profitLossValue();
-
+      const w = canvas.parentElement.clientWidth - 30;
+      canvas.width = Math.max(250, w);
+      canvas.height = 170;
+      const expenseVal = totalExpenses();
+      const saleVal = totalSalesAmount();
+      const profitVal = profitLoss();
       const labels = ['مصارف', 'فروش', 'فایده/تاوان'];
-      const values = [expenseTotal, saleTotal, profit];
-      const colors = ['#bc4742', '#2d6a4f', profit >=0 ? '#40916c' : '#bc4742'];
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const barWidth = Math.min(60, (canvas.width - 80) / 3);
-      const startX = (canvas.width - (barWidth * 3 + 50)) / 2 + 20;
-
-      for (let i = 0; i < 3; i++) {
-        const barHeight = Math.abs(values[i]) / (Math.max(expenseTotal, saleTotal, Math.abs(profit), 1)) * 110;
-        const x = startX + i * (barWidth + 20);
-        const y = 140 - Math.max(15, barHeight);
-        
+      const values = [expenseVal, saleVal, profitVal];
+      const colors = ['#bc4742', '#2d6a4f', profitVal >=0 ? '#40916c' : '#bc4742'];
+      
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      const barWidth = Math.min(62, (canvas.width-80)/3);
+      const startX = (canvas.width - (barWidth*3 + 50))/2 + 20;
+      const maxVal = Math.max(expenseVal, saleVal, Math.abs(profitVal), 1);
+      
+      for (let i=0; i<3; i++) {
+        const h = Math.abs(values[i]) / maxVal * 105;
+        const x = startX + i*(barWidth+20);
+        const y = 130 - Math.max(12, h);
         ctx.fillStyle = colors[i];
-        ctx.fillRect(x, y, barWidth, Math.max(15, barHeight));
-        ctx.fillStyle = '#1e2b20';
-        ctx.font = 'bold 12px "Segoe UI"';
+        ctx.fillRect(x, y, barWidth, Math.max(12, h));
+        ctx.fillStyle = '#0b2b1d';
+        ctx.font = 'bold 11px "Segoe UI"';
         ctx.textAlign = 'center';
-        ctx.fillText(labels[i], x + barWidth/2, 160);
-        ctx.fillText(formatMoney(values[i]), x + barWidth/2, y - 6);
+        ctx.fillText(labels[i], x+barWidth/2, 150);
+        ctx.fillText(formatMoney(values[i]), x+barWidth/2, y-6);
       }
     }
 
-    window.resetDemoData = () => {
-      resetToDefault();
-      refreshUI();
-    };
-
+    window.loadDemoData = () => { setDemoData(); refreshUI(); };
     window.clearAllData = () => {
-      if (confirm('آیا مطمئن هستید همه داده‌ها حذف شوند؟')) {
-        partners = [];
-        deaths = 0;
-        expenses = [];
-        sales = [];
+      if (confirm('همه داده‌ها حذف شوند؟')) {
+        partners = []; deaths = 0; expenses = []; sales = [];
         refreshUI();
       }
     };
 
-    // set default dates to today
+    // تنظیم تاریخ امروز
     window.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().slice(0,10);
       document.getElementById('expenseDate').value = today;
       document.getElementById('saleDate').value = today;
-      loadData();
+      loadFromStorage();
       refreshUI();
     });
-
   })();
 </script>
 </body>
