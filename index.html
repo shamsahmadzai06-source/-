@@ -3,312 +3,491 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>فارم ارغندی | مدیریت مرغداری</title>
+  <title>فارم ارغندی | سیستم مدیریت مرغداری</title>
   <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22short_name%22%3A%22%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f4ef%22%2C%22theme_color%22%3A%22%231b4d3f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'45'%20fill%3D'%231b4d3f'%2F%3E%3Ctext%20x%3D'50'%20y%3D'70'%20font-size%3D'50'%20text-anchor%3D'middle'%20fill%3D'white'%3E%F0%9F%90%94%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22short_name%22%3A%22%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f8faf8%22%2C%22theme_color%22%3A%22%231b5e20%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%3E%3Cstop%20offset%3D'0%25'%20style%3D'stop-color%3A%231b5e20'%2F%3E%3Cstop%20offset%3D'100%25'%20style%3D'stop-color%3A%234caf50'%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'45'%20fill%3D'url(%23g)'%2F%3E%3Ctext%20x%3D'50'%20y%3D'68'%20font-size%3D'50'%20text-anchor%3D'middle'%20fill%3D'white'%20font-weight%3D'bold'%3E%F0%9F%90%94%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    :root {
+      --primary: #1b5e20;
+      --primary-light: #4caf50;
+      --primary-dark: #0d3b0f;
+      --gold: #ffb300;
+      --gold-light: #ffe082;
+      --danger: #c62828;
+      --danger-light: #ef5350;
+      --bg: #f8faf8;
+      --card: #ffffff;
+      --text: #1a2e1f;
+      --text-light: #4a6b56;
+      --border: #c8e6c9;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+      --radius: 20px;
+      --radius-sm: 12px;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #eaf0e6;
-      padding: 12px;
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 50%, #e8f5e9 100%);
+      padding: 16px;
       direction: rtl;
-      color: #1a2e1f;
+      color: var(--text);
+      font-family: 'Segoe UI', 'Vazirmatn', Tahoma, sans-serif;
+      min-height: 100vh;
     }
     .app-container {
-      max-width: 950px;
+      max-width: 1000px;
       margin: 0 auto;
-      background: #ffffff;
-      border-radius: 36px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      padding: 20px;
-      background: linear-gradient(145deg, #ffffff 0%, #f9fdf9 100%);
+      background: var(--card);
+      border-radius: 32px;
+      box-shadow: var(--shadow-lg);
+      padding: 0;
+      overflow: hidden;
     }
+    /* هدر با لوگو */
     .farm-header {
-      background: #1b4d3f;
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #1b5e20 100%);
       color: white;
-      border-radius: 28px;
-      padding: 16px 20px;
-      margin-bottom: 18px;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 10px;
-      box-shadow: 0 8px 18px rgba(27,77,63,0.25);
+      position: relative;
+      overflow: hidden;
     }
-    .farm-header h1 {
-      font-size: 1.9rem;
+    .farm-header::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .farm-header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -10px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .logo-container {
+      background: white;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+    .logo-icon {
+      font-size: 38px;
+      line-height: 1;
+    }
+    .header-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .header-info h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .header-info .subtitle {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      color: #c8e6c9;
+    }
+    .profit-badge {
+      background: var(--gold);
+      color: #1b5e20;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       gap: 8px;
+      box-shadow: 0 4px 12px rgba(255,179,0,0.3);
+      position: relative;
+      z-index: 1;
     }
-    .profit-badge {
-      background: #f9c74f;
-      color: #1b4d3f;
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.2rem;
+    /* ناوبری سالون‌ها */
+    .salon-nav {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      gap: 4px;
+      padding: 12px 20px;
+      background: #f1f8e9;
+      border-bottom: 2px solid #c8e6c9;
     }
+    .salon-tab {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: white;
+      border: 2px solid transparent;
+      font-size: 0.95rem;
+    }
+    .salon-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(27,94,32,0.3);
+    }
+    .salon-tab:hover:not(.active) {
+      background: #e8f5e9;
+      border-color: #a5d6a7;
+    }
+    /* محتوای اصلی */
+    .main-content {
+      padding: 20px;
+    }
+    /* کارت‌ها */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
       margin-bottom: 20px;
     }
     .card {
-      background: #f4f9f5;
-      border-radius: 22px;
-      padding: 16px 12px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.04);
-      border: 1px solid #d0e0d4;
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
       text-align: center;
+      transition: transform 0.2s;
     }
-    .card-icon { font-size: 2rem; margin-bottom: 4px; }
-    .card-value { font-weight: 700; font-size: 1.2rem; color: #0b2b1d; }
-    .card-label { font-size: 0.75rem; color: #4a6b56; }
+    .card:hover { transform: translateY(-2px); }
+    .card-icon { font-size: 2.2rem; margin-bottom: 6px; }
+    .card-value { font-weight: 800; font-size: 1.3rem; color: var(--primary-dark); }
+    .card-label { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
     .section-title {
-      font-weight: 700;
-      margin: 18px 0 10px;
-      color: #1b4d3f;
-      border-bottom: 2px solid #b7d7c4;
-      padding-bottom: 5px;
+      font-weight: 800;
+      margin: 20px 0 12px;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #c8e6c9;
     }
+    .section-title .icon { font-size: 1.4rem; }
     .form-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 14px;
       align-items: center;
     }
     input, select, button {
-      padding: 10px 12px;
-      border-radius: 16px;
-      border: 1px solid #c2d5c9;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #c8e6c9;
       background: white;
       font-size: 0.9rem;
       outline: none;
-      transition: 0.2s;
+      transition: all 0.2s;
+      font-family: inherit;
     }
-    input:focus, select:focus { border-color: #2d6a4f; box-shadow: 0 0 0 3px rgba(45,106,79,0.2); }
+    input:focus, select:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(76,175,80,0.15);
+    }
     button {
-      background: #1b4d3f;
+      background: var(--primary);
       color: white;
       border: none;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
-      background: #2d6a4f;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+      font-size: 0.9rem;
     }
-    button.danger { background: #b23b2c; }
-    button.secondary { background: #5f7e6b; }
-    button.warning { background: #e09f3e; }
+    button:hover { background: #2e7d32; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(27,94,32,0.25); }
+    button.danger { background: var(--danger); }
+    button.danger:hover { background: #b71c1c; }
+    button.warning { background: #e65100; }
+    button.warning:hover { background: #bf360c; }
+    button.secondary { background: #546e7a; }
+    button.secondary:hover { background: #37474f; }
+    button.gold { background: var(--gold); color: #1b5e20; }
+    button.gold:hover { background: #ffc107; }
     .file-attach {
-      background: #f1f7f2;
-      padding: 6px 10px;
-      border-radius: 14px;
+      background: #f1f8e9;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       font-size: 0.8rem;
+      border: 1.5px dashed #a5d6a7;
+      cursor: pointer;
     }
-    .expense-list, .sale-list {
-      background: #f6faf7;
-      border-radius: 20px;
-      padding: 10px;
-      max-height: 240px;
+    .list-container {
+      background: #f9fdf9;
+      border-radius: var(--radius);
+      padding: 12px;
+      max-height: 280px;
       overflow-y: auto;
       margin: 10px 0;
+      border: 1px solid var(--border);
     }
     .list-item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       background: white;
-      margin-bottom: 7px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      align-items: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      margin-bottom: 8px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .doc-thumb {
-      background: #e2e8e0;
-      border-radius: 10px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      margin-left: 6px;
+    .list-item .item-info { flex: 1; min-width: 120px; }
+    .list-item .item-amount { font-weight: 700; color: var(--primary-dark); }
+    .badge {
+      background: #e8f5e9;
+      color: #1b5e20;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
-    .chart-container {
-      background: #f2f7f3;
-      border-radius: 24px;
-      padding: 15px;
-      margin: 15px 0;
-    }
-    canvas { width: 100%; height: auto; max-height: 200px; }
+    .badge.gold { background: #fff8e1; color: #e65100; }
+    .badge.red { background: #ffebee; color: #c62828; }
     .partner-card {
-      background: #eef4ef;
-      border-radius: 18px;
-      padding: 8px 14px;
+      background: #f9fdf9;
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 5px 0;
+      gap: 10px;
+      margin: 6px 0;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
     }
-    .chick-control {
+    .partner-card .actions { margin-right: auto; display: flex; gap: 6px; }
+    .chart-container {
+      background: #f9fdf9;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 16px 0;
+      border: 1px solid var(--border);
+    }
+    canvas { width: 100%; height: auto; max-height: 200px; display: block; }
+    .period-selector {
       display: flex;
+      gap: 10px;
       align-items: center;
-      gap: 8px;
-      background: #f0f7f2;
-      padding: 8px 14px;
-      border-radius: 18px;
+      flex-wrap: wrap;
     }
-    hr { border: 0.5px solid #cbdcd0; margin: 14px 0; }
-    .action-icons {
-      display: flex;
-      gap: 6px;
-      margin-right: auto;
+    hr { border: 0.5px solid var(--border); margin: 16px 0; }
+    small { color: var(--text-light); }
+    .chick-buy-card {
+      background: linear-gradient(135deg, #fff8e1, #fff3e0);
+      border: 2px solid #ffb300;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 12px 0;
     }
-    @media (max-width: 500px) { .form-row { flex-direction: column; align-items: stretch; } }
+    @media (max-width: 600px) {
+      .farm-header { flex-direction: column; text-align: center; }
+      .form-row { flex-direction: column; align-items: stretch; }
+      .salon-nav { flex-direction: column; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
 <div class="app-container">
-  <!-- هدر با نام فارم و فایده/تاوان -->
+  <!-- هدر با لوگو -->
   <div class="farm-header">
-    <h1>🐔 فارم ارغندی</h1>
+    <div class="logo-container">
+      <span class="logo-icon">🐔</span>
+    </div>
+    <div class="header-info">
+      <h1>فارم ارغندی</h1>
+      <div class="subtitle">سیستم مدیریت هوشمند مرغداری | پروش مرغ گوشتی</div>
+    </div>
     <div class="profit-badge" id="profitHeader">
       <span>📊</span> <span id="headerProfitText">۰ ؋</span>
     </div>
   </div>
 
-  <!-- کارت های آماری -->
-  <div class="cards-grid">
-    <div class="card">
-      <div class="card-icon">🐣</div>
-      <div class="card-value" id="totalChicks">14,000</div>
-      <div class="card-label">چوچه اولیه</div>
+  <!-- ناوبری سالون‌ها -->
+  <div class="salon-nav">
+    <div class="salon-tab active" data-salon="loy" onclick="switchSalon('loy')">
+      🏠 لوی سالون <span style="font-size:0.7rem;">(سالون بزرگ)</span>
     </div>
-    <div class="card">
-      <div class="card-icon">💀</div>
-      <div class="card-value" id="totalDeaths">0</div>
-      <div class="card-label">تلفات کل</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🐓</div>
-      <div class="card-value" id="remainingBirds">14,000</div>
-      <div class="card-label">موجودی زنده</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">💸</div>
-      <div class="card-value" id="totalExpense">۰</div>
-      <div class="card-label">مصارف کل</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🛒</div>
-      <div class="card-value" id="totalSales">۰</div>
-      <div class="card-label">فروش کل</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚖️</div>
-      <div class="card-value" id="profitLossCard">۰</div>
-      <div class="card-label">فایده / تاوان</div>
+    <div class="salon-tab" data-salon="kochni" onclick="switchSalon('kochni')">
+      🏡 کوچنی سالون <span style="font-size:0.7rem;">(سالون کوچک)</span>
     </div>
   </div>
 
-  <!-- مدیریت چوچه ها -->
-  <div class="section-title">🐣 مدیریت چوچه‌ها</div>
-  <div class="chick-control">
-    <span>تعداد فعلی چوچه: <strong id="currentChicksDisplay">14,000</strong></span>
-    <input type="number" id="chickAdjustment" placeholder="تعداد" min="1" style="width:100px;">
-    <button onclick="adjustChicks('add')" class="secondary">➕ افزودن</button>
-    <button onclick="adjustChicks('remove')" class="warning">➖ کم کردن</button>
-    <button onclick="resetChicks()" class="danger">↺ تنظیم به ۱۴,۰۰۰</button>
-  </div>
-  <small style="color:#4a6b56;">افزودن چوچه جدید یا کم کردن (فروش عمده/انتقال)</small>
-
-  <!-- بخش شرکا با سرمایه پولی -->
-  <div class="section-title">🤝 شرکا و سرمایه (افغانی)</div>
-  <div class="form-row">
-    <input type="text" id="partnerName" placeholder="اسم شریک" style="flex:2">
-    <input type="number" id="partnerCapital" placeholder="سرمایه (افغانی)" min="0" step="1000" style="flex:2">
-    <button onclick="addPartner()">➕ افزودن شریک</button>
-  </div>
-  <div id="partnersContainer"></div>
-  <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span> | برای حذف یا ویرایش از دکمه‌های کنار هر شریک استفاده کنید</small>
-
-  <!-- تلفات روزانه -->
-  <div class="section-title">⚠️ ثبت تلفات روزانه</div>
-  <div class="form-row">
-    <input type="number" id="deathCount" placeholder="تعداد تلفات امروز" min="0" value="0">
-    <button onclick="recordDeath()">ثبت تلفات</button>
-  </div>
-
-  <!-- مصارف همراه با آپلود سند -->
-  <div class="section-title">🧾 ثبت مصارف (با سند)</div>
-  <div class="form-row">
-    <select id="expenseCategory">
-      <option value="غذا">🍚 دانه/غذا</option>
-      <option value="واکسین">💉 واکسین</option>
-      <option value="ذغال">🔥 ذغال</option>
-      <option value="کرایه موتر">🚚 کرایه موتر</option>
-      <option value="معاش کارمند">👷 معاش کارمند</option>
-      <option value="دوایی">🧪 دوا</option>
-      <option value="کود">🧹 کود</option>
-      <option value="اسناد کرایه دوا">📄 اسناد کرایه دوا</option>
-      <option value="سایر">📌 سایر</option>
-    </select>
-    <input type="number" id="expenseAmount" placeholder="مبلغ (افغانی)" min="0" step="0.1">
-    <input type="date" id="expenseDate">
-    <div class="file-attach">
-      <label for="expenseDoc" style="cursor:pointer;">📎 سند</label>
-      <input type="file" id="expenseDoc" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(this)">
-      <span id="fileNameDisplay">انتخاب نشده</span>
+  <!-- محتوای اصلی -->
+  <div class="main-content">
+    <!-- کارت‌های آماری -->
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🐣</div>
+        <div class="card-value" id="totalChicksAll">۱۴,۰۰۰</div>
+        <div class="card-label">کل چوچه‌ها</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💀</div>
+        <div class="card-value" id="totalDeathsAll">۰</div>
+        <div class="card-label">تلفات کل</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐓</div>
+        <div class="card-value" id="remainingBirdsAll">۱۴,۰۰۰</div>
+        <div class="card-label">موجودی زنده</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💸</div>
+        <div class="card-value" id="totalExpenseAll">۰ ؋</div>
+        <div class="card-label">مصارف کل</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛒</div>
+        <div class="card-value" id="totalSalesAll">۰ ؋</div>
+        <div class="card-label">فروش کل</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <div class="card-value" id="profitLossAll">۰ ؋</div>
+        <div class="card-label">فایده / تاوان</div>
+      </div>
     </div>
-    <button onclick="addExpense()">ثبت مصرف</button>
-  </div>
-  <div class="expense-list" id="expenseListContainer"></div>
 
-  <!-- فروش مرغ -->
-  <div class="section-title">🐔 فروش مرغ</div>
-  <div class="form-row">
-    <input type="number" id="saleBirdCount" placeholder="تعداد مرغ فروخته شده" min="1">
-    <input type="number" id="salePricePerBird" placeholder="قیمت فی مرغ" min="0" step="0.1">
-    <input type="date" id="saleDate">
-    <button onclick="addSale()">💵 ثبت فروش</button>
-  </div>
-  <div class="sale-list" id="saleListContainer"></div>
-
-  <!-- نمودار -->
-  <div class="chart-container">
-    <div style="display:flex; justify-content:space-between;">
-      <span>📈 مصارف / فروش / فایده</span>
-      <span id="chartLabel" style="background:#d4e2d7; padding:2px 12px; border-radius:14px;">نمای کلی</span>
+    <!-- اطلاعات سالون فعال -->
+    <div id="salonInfo" style="background:#e8f5e9; border-radius:16px; padding:12px 18px; margin-bottom:14px; font-weight:700; color:#1b5e20;">
+      📍 سالون فعال: <span id="activeSalonName">لوی سالون</span> | دوره: <span id="activePeriodDisplay">۱</span> | چوچه: <span id="activeSalonChicks">۷,۰۰۰</span>
     </div>
-    <canvas id="financeChart" width="400" height="170"></canvas>
-  </div>
 
-  <div style="display:flex; gap:8px; flex-wrap:wrap;">
-    <button onclick="loadDemoData()" class="secondary">🔄 دیتای نمونه (ارغندی)</button>
-    <button onclick="clearAllData()" class="danger">🗑️ حذف همه داده‌ها</button>
+    <!-- بخش دوره -->
+    <div class="section-title"><span class="icon">📅</span> مدیریت دوره</div>
+    <div class="period-selector">
+      <span>دوره فعلی:</span>
+      <input type="number" id="periodNumber" placeholder="شماره دوره" min="1" value="1" style="width:100px;">
+      <button onclick="setPeriod()" class="secondary">📋 تنظیم دوره</button>
+      <span style="margin-right:10px;">مدت دوره (روز):</span>
+      <input type="number" id="periodDays" placeholder="۴۵" min="1" value="45" style="width:80px;">
+      <button onclick="setPeriodDays()" class="secondary">⏱ تنظیم</button>
+    </div>
+
+    <!-- خرید چوچه جدید -->
+    <div class="chick-buy-card">
+      <div class="section-title" style="margin-top:0;"><span class="icon">🛒</span> خرید چوچه جدید</div>
+      <div class="form-row">
+        <input type="number" id="newChickCount" placeholder="تعداد چوچه" min="1" style="flex:1;">
+        <input type="number" id="pricePerChick" placeholder="قیمت فی دانه (؋)" min="0" step="0.1" style="flex:1;">
+        <input type="date" id="chickBuyDate">
+        <select id="chickSupplier" style="flex:1;">
+          <option value="">انتخاب فروشنده...</option>
+          <option value="بازار کابل">بازار کابل</option>
+          <option value="فارم جلال‌آباد">فارم جلال‌آباد</option>
+          <option value="واردکننده هرات">واردکننده هرات</option>
+          <option value="محلی">محلی</option>
+        </select>
+        <button onclick="buyChicks()" class="gold">🛒 خرید چوچه</button>
+      </div>
+      <small>💰 مجموع هزینه: <span id="buyTotalDisplay">۰ ؋</span> | چوچه‌ها به سالون فعال اضافه میشوند</small>
+    </div>
+
+    <!-- شرکا -->
+    <div class="section-title"><span class="icon">🤝</span> شرکا و سرمایه</div>
+    <div class="form-row">
+      <input type="text" id="partnerName" placeholder="اسم شریک" style="flex:2;">
+      <input type="number" id="partnerCapital" placeholder="سرمایه (افغانی)" min="0" step="1000" style="flex:2;">
+      <button onclick="addPartner()">➕ افزودن شریک</button>
+    </div>
+    <div id="partnersContainer"></div>
+    <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span></small>
+
+    <!-- تلفات -->
+    <div class="section-title"><span class="icon">⚠️</span> ثبت تلفات</div>
+    <div class="form-row">
+      <input type="number" id="deathCount" placeholder="تعداد تلفات" min="0" value="0" style="width:120px;">
+      <button onclick="recordDeath()" class="danger">ثبت تلفات</button>
+    </div>
+
+    <!-- مصارف -->
+    <div class="section-title"><span class="icon">🧾</span> ثبت مصارف</div>
+    <div class="form-row">
+      <select id="expenseCategory" style="flex:1;">
+        <option value="غذا">🍚 دانه/غذا</option>
+        <option value="واکسین">💉 واکسین</option>
+        <option value="ذغال">🔥 ذغال</option>
+        <option value="کرایه موتر">🚚 کرایه موتر</option>
+        <option value="معاش کارمند">👷 معاش کارمند</option>
+        <option value="دوایی">🧪 دوا</option>
+        <option value="کود">🧹 کود</option>
+        <option value="اسناد">📄 اسناد</option>
+        <option value="سایر">📌 سایر</option>
+      </select>
+      <input type="number" id="expenseAmount" placeholder="مبلغ (؋)" min="0" step="0.1" style="width:130px;">
+      <input type="date" id="expenseDate" style="width:140px;">
+      <div class="file-attach">
+        <label for="expenseDoc" style="cursor:pointer;">📎 سند</label>
+        <input type="file" id="expenseDoc" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(this)">
+        <span id="fileNameDisplay">انتخاب نشده</span>
+      </div>
+      <button onclick="addExpense()">ثبت مصرف</button>
+    </div>
+    <div class="list-container" id="expenseListContainer"></div>
+
+    <!-- فروش -->
+    <div class="section-title"><span class="icon">🐔</span> فروش مرغ</div>
+    <div class="form-row">
+      <input type="number" id="saleBirdCount" placeholder="تعداد مرغ" min="1" style="width:110px;">
+      <input type="number" id="salePricePerBird" placeholder="قیمت فی مرغ" min="0" step="0.1" style="width:130px;">
+      <input type="date" id="saleDate" style="width:140px;">
+      <button onclick="addSale()">💵 ثبت فروش</button>
+    </div>
+    <div class="list-container" id="saleListContainer"></div>
+
+    <!-- نمودار -->
+    <div class="chart-container">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:700;">📈 نمودار مالی</span>
+        <span class="badge">نمای کلی</span>
+      </div>
+      <canvas id="financeChart" width="400" height="170"></canvas>
+    </div>
+
+    <!-- دکمه‌های پایین -->
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+      <button onclick="loadDemoData()" class="secondary">🔄 دیتای نمونه</button>
+      <button onclick="clearAllData()" class="danger">🗑️ حذف همه داده‌ها</button>
+    </div>
+    <small>تمام اطلاعات در Local Storage ذخیره میشود | PWA آماده</small>
   </div>
-  <small style="color:#4a6b56; margin-top:8px; display:block;">تمام اطلاعات در Local Storage ذخیره میشود | PWA آماده</small>
 </div>
 
 <script>
   (() => {
-    // Service Worker ساده برای PWA
+    // Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(
@@ -318,50 +497,63 @@
     }
 
     // ---------- STATE ----------
-    let totalChicks = 14000;      // تعداد کل چوچه‌های اولیه (قابل تغییر)
-    let partners = [];            // { name, capital }
-    let deaths = 0;
-    let expenses = [];           // { id, category, amount, date, docName, docDataUrl }
-    let sales = [];              // { id, birdCount, pricePerBird, total, date }
-    let selectedFileData = null; // برای فایل ضمیمه موقت
+    let currentSalon = 'loy'; // 'loy' یا 'kochni'
+    let salons = {
+      loy: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 },
+      kochni: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 }
+    };
+    let partners = [];
+    let expenses = [];
+    let sales = [];
+    let selectedFileData = null;
 
-    // ذخیره و بازیابی localStorage
+    // محاسبات
+    function totalChicksAll() { return salons.loy.chicks + salons.kochni.chicks; }
+    function totalDeathsAll() { return salons.loy.deaths + salons.kochni.deaths; }
+    function remainingAll() { return Math.max(0, totalChicksAll() - totalDeathsAll()); }
+    function totalExpenses() { return expenses.reduce((s, e) => s + (parseFloat(e.amount) || 0), 0); }
+    function totalSalesAmount() { return sales.reduce((s, sa) => s + (parseFloat(sa.total) || 0), 0); }
+    function profitLoss() { return totalSalesAmount() - totalExpenses(); }
+    function totalCapital() { return partners.reduce((s, p) => s + (parseFloat(p.capital) || 0), 0); }
+    function partnerSharePercent(cap) { const t = totalCapital(); return t > 0 ? ((cap/t)*100).toFixed(2) : 0; }
+    function formatMoney(v) { return Number(v).toLocaleString('fa-AF', { maximumFractionDigits: 0 }) + ' ؋'; }
+
+    function getActiveSalon() { return salons[currentSalon]; }
+
+    // ذخیره و بازیابی
     function saveToStorage() {
-      localStorage.setItem('arghandi_farm_v3', JSON.stringify({
-        totalChicks, partners, deaths, expenses, sales
+      localStorage.setItem('arghandi_farm_pro', JSON.stringify({
+        currentSalon, salons, partners, expenses, sales
       }));
     }
-
     function loadFromStorage() {
-      const raw = localStorage.getItem('arghandi_farm_v3');
+      const raw = localStorage.getItem('arghandi_farm_pro');
       if (raw) {
         try {
-          const data = JSON.parse(raw);
-          totalChicks = data.totalChicks || 14000;
-          partners = data.partners || [];
-          deaths = data.deaths || 0;
-          expenses = data.expenses || [];
-          sales = data.sales || [];
+          const d = JSON.parse(raw);
+          currentSalon = d.currentSalon || 'loy';
+          salons = d.salons || { loy: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 }, kochni: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 } };
+          partners = d.partners || [];
+          expenses = d.expenses || [];
+          sales = d.sales || [];
         } catch (e) { setDemoData(); }
-      } else {
-        setDemoData();
-      }
+      } else { setDemoData(); }
     }
-
     function setDemoData() {
-      totalChicks = 14000;
+      salons = {
+        loy: { chicks: 7000, deaths: 30, period: 3, periodDays: 45 },
+        kochni: { chicks: 7000, deaths: 22, period: 2, periodDays: 40 }
+      };
       partners = [
         { name: 'احمد', capital: 200000 },
         { name: 'محمود', capital: 500000 },
         { name: 'کریم', capital: 300000 }
       ];
-      deaths = 52;
       expenses = [
         { id: Date.now()+1, category: 'غذا', amount: 18500, date: '2026-05-10', docName: 'بل_غذا.jpg', docDataUrl: '' },
         { id: Date.now()+2, category: 'واکسین', amount: 4200, date: '2026-05-09', docName: '', docDataUrl: '' },
-        { id: Date.now()+3, category: 'ذغال', amount: 2100, date: '2026-05-08', docName: 'رسید_ذغال.png', docDataUrl: '' },
-        { id: Date.now()+4, category: 'معاش کارمند', amount: 14000, date: '2026-05-07', docName: 'معاش_ثبت.pdf', docDataUrl: '' },
-        { id: Date.now()+5, category: 'کرایه موتر', amount: 3000, date: '2026-05-06', docName: '', docDataUrl: '' },
+        { id: Date.now()+3, category: 'ذغال', amount: 2100, date: '2026-05-08', docName: 'رسید.pdf', docDataUrl: '' },
+        { id: Date.now()+4, category: 'معاش کارمند', amount: 14000, date: '2026-05-07', docName: '', docDataUrl: '' },
       ];
       sales = [
         { id: Date.now()+10, birdCount: 150, pricePerBird: 215, total: 32250, date: '2026-05-11' },
@@ -370,297 +562,241 @@
       saveToStorage();
     }
 
-    // محاسبات
-    function totalCapital() {
-      return partners.reduce((sum, p) => sum + (parseFloat(p.capital) || 0), 0);
-    }
-    function partnerSharePercent(capital) {
-      const total = totalCapital();
-      return total > 0 ? ((capital / total) * 100).toFixed(2) : 0;
-    }
-    function getRemainingBirds() {
-      return Math.max(0, totalChicks - deaths);
-    }
-    function totalExpenses() {
-      return expenses.reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
-    }
-    function totalSalesAmount() {
-      return sales.reduce((s, sale) => s + (parseFloat(sale.total) || 0), 0);
-    }
-    function profitLoss() {
-      return totalSalesAmount() - totalExpenses();
-    }
-    function formatMoney(val) {
-      return Number(val).toLocaleString('fa-AF', { maximumFractionDigits: 0 }) + ' ؋';
-    }
-
-    // به‌روزرسانی UI
-    function refreshUI() {
-      document.getElementById('totalChicks').innerText = totalChicks.toLocaleString('fa-AF');
-      document.getElementById('currentChicksDisplay').innerText = totalChicks.toLocaleString('fa-AF');
-      document.getElementById('totalDeaths').innerText = deaths.toLocaleString('fa-AF');
-      document.getElementById('remainingBirds').innerText = getRemainingBirds().toLocaleString('fa-AF');
-      document.getElementById('totalExpense').innerText = formatMoney(totalExpenses());
-      document.getElementById('totalSales').innerText = formatMoney(totalSalesAmount());
-      const pl = profitLoss();
-      document.getElementById('profitLossCard').innerText = formatMoney(pl);
-      document.getElementById('headerProfitText').innerText = formatMoney(pl);
-      const headerBadge = document.getElementById('profitHeader');
-      headerBadge.style.background = pl >= 0 ? '#f9c74f' : '#f9844a';
-      
-      renderPartners();
-      renderExpenseList();
-      renderSaleList();
-      drawChart();
-      saveToStorage();
-    }
-
-    // مدیریت چوچه ها
-    window.adjustChicks = (action) => {
-      const val = parseInt(document.getElementById('chickAdjustment').value, 10);
-      if (isNaN(val) || val <= 0) {
-        alert('لطفاً یک تعداد معتبر وارد کنید');
-        return;
-      }
-      if (action === 'add') {
-        totalChicks += val;
-      } else if (action === 'remove') {
-        if (val > totalChicks) {
-          alert('تعداد وارد شده بیشتر از چوچه‌های موجود است');
-          return;
-        }
-        totalChicks -= val;
-      }
-      document.getElementById('chickAdjustment').value = '';
+    // تغییر سالون
+    window.switchSalon = (salon) => {
+      currentSalon = salon;
+      document.querySelectorAll('.salon-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector(`[data-salon="${salon}"]`).classList.add('active');
       refreshUI();
     };
 
-    window.resetChicks = () => {
-      totalChicks = 14000;
-      document.getElementById('chickAdjustment').value = '';
+    // تنظیم دوره
+    window.setPeriod = () => {
+      const p = parseInt(document.getElementById('periodNumber').value, 10);
+      if (isNaN(p) || p < 1) return alert('شماره دوره معتبر وارد کنید');
+      getActiveSalon().period = p;
       refreshUI();
     };
+    window.setPeriodDays = () => {
+      const d = parseInt(document.getElementById('periodDays').value, 10);
+      if (isNaN(d) || d < 1) return alert('مدت دوره معتبر وارد کنید');
+      getActiveSalon().periodDays = d;
+      refreshUI();
+    };
+
+    // خرید چوچه
+    window.buyChicks = () => {
+      const count = parseInt(document.getElementById('newChickCount').value, 10);
+      const price = parseFloat(document.getElementById('pricePerChick').value);
+      const date = document.getElementById('chickBuyDate').value || new Date().toISOString().slice(0,10);
+      const supplier = document.getElementById('chickSupplier').value || 'نامشخص';
+      if (isNaN(count) || count <= 0 || isNaN(price) || price < 0) return alert('تعداد و قیمت چوچه را وارد کنید');
+      const totalCost = count * price;
+      getActiveSalon().chicks += count;
+      // ثبت خودکار مصرف خرید چوچه
+      expenses.push({
+        id: Date.now(),
+        category: 'خرید چوچه',
+        amount: totalCost,
+        date: date,
+        docName: `فروشنده: ${supplier}`,
+        docDataUrl: ''
+      });
+      document.getElementById('newChickCount').value = '';
+      document.getElementById('pricePerChick').value = '';
+      refreshUI();
+    };
+
+    // آپدیت نمایش قیمت کل خرید
+    document.getElementById('newChickCount')?.addEventListener('input', updateBuyTotal);
+    document.getElementById('pricePerChick')?.addEventListener('input', updateBuyTotal);
+    function updateBuyTotal() {
+      const c = parseInt(document.getElementById('newChickCount').value) || 0;
+      const p = parseFloat(document.getElementById('pricePerChick').value) || 0;
+      document.getElementById('buyTotalDisplay').innerText = formatMoney(c * p);
+    }
 
     // شرکا
-    function renderPartners() {
-      const container = document.getElementById('partnersContainer');
-      document.getElementById('totalCapital').innerText = formatMoney(totalCapital());
-      if (partners.length === 0) {
-        container.innerHTML = '<div style="color:#6b7c6e; padding:6px;">هیچ شریکی ثبت نشده</div>';
-        return;
-      }
-      container.innerHTML = partners.map((p, idx) => {
-        const share = partnerSharePercent(p.capital);
-        return `<div class="partner-card">
-          <strong>${p.name}</strong> : سرمایه ${formatMoney(p.capital)} (${share}٪)
-          <div class="action-icons">
-            <button onclick="window.editPartner(${idx})" style="background:#e09f3e; padding:4px 8px; font-size:0.7rem;" title="ویرایش">✎</button>
-            <button onclick="window.removePartner(${idx})" style="background:#b23b2c; padding:4px 8px; font-size:0.7rem;" title="حذف">✕</button>
-          </div>
-        </div>`;
-      }).join('');
-    }
-
-    window.removePartner = (index) => {
-      if (confirm('آیا از حذف این شریک اطمینان دارید؟')) {
-        partners.splice(index, 1);
-        refreshUI();
-      }
-    };
-
-    window.editPartner = (index) => {
-      const partner = partners[index];
-      const newName = prompt('نام شریک:', partner.name);
-      if (newName === null) return;
-      const newCapital = prompt('سرمایه (افغانی):', partner.capital);
-      if (newCapital === null) return;
-      const capitalNum = parseFloat(newCapital);
-      if (isNaN(capitalNum) || capitalNum <= 0) {
-        alert('سرمایه باید عدد مثبت باشد');
-        return;
-      }
-      partners[index] = { name: newName.trim() || partner.name, capital: capitalNum };
-      refreshUI();
-    };
-
     window.addPartner = () => {
-      const name = document.getElementById('partnerName').value.trim();
-      const capital = parseFloat(document.getElementById('partnerCapital').value);
-      if (!name || isNaN(capital) || capital <= 0) return alert('اسم و سرمایه معتبر وارد کنید');
-      partners.push({ name, capital });
+      const n = document.getElementById('partnerName').value.trim();
+      const c = parseFloat(document.getElementById('partnerCapital').value);
+      if (!n || isNaN(c) || c <= 0) return alert('اسم و سرمایه معتبر وارد کنید');
+      partners.push({ name: n, capital: c });
       document.getElementById('partnerName').value = '';
       document.getElementById('partnerCapital').value = '';
+      refreshUI();
+    };
+    window.removePartner = (i) => { if(confirm('حذف?')){ partners.splice(i,1); refreshUI(); } };
+    window.editPartner = (i) => {
+      const p = partners[i];
+      const nn = prompt('نام:', p.name); if(nn===null) return;
+      const nc = prompt('سرمایه:', p.capital); if(nc===null) return;
+      const cn = parseFloat(nc);
+      if(isNaN(cn)||cn<=0) return alert('سرمایه نامعتبر');
+      partners[i] = { name: nn.trim()||p.name, capital: cn };
       refreshUI();
     };
 
     // تلفات
     window.recordDeath = () => {
-      const val = parseInt(document.getElementById('deathCount').value, 10);
-      if (!isNaN(val) && val > 0) {
-        deaths += val;
+      const v = parseInt(document.getElementById('deathCount').value, 10);
+      if (!isNaN(v) && v > 0) {
+        getActiveSalon().deaths += v;
         document.getElementById('deathCount').value = 0;
         refreshUI();
       }
     };
 
-    // مدیریت فایل ضمیمه
-    window.handleFileSelect = (input) => {
-      const file = input.files[0];
-      const display = document.getElementById('fileNameDisplay');
-      if (file) {
-        display.textContent = file.name;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          selectedFileData = { name: file.name, dataUrl: e.target.result };
-        };
-        reader.readAsDataURL(file);
-      } else {
-        display.textContent = 'انتخاب نشده';
-        selectedFileData = null;
-      }
+    // فایل
+    window.handleFileSelect = (inp) => {
+      const f = inp.files[0];
+      const d = document.getElementById('fileNameDisplay');
+      if (f) {
+        d.textContent = f.name;
+        const r = new FileReader();
+        r.onload = (e) => { selectedFileData = { name: f.name, dataUrl: e.target.result }; };
+        r.readAsDataURL(f);
+      } else { d.textContent = 'انتخاب نشده'; selectedFileData = null; }
     };
 
-    // ثبت مصرف
+    // مصارف
     window.addExpense = () => {
-      const category = document.getElementById('expenseCategory').value;
-      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      const cat = document.getElementById('expenseCategory').value;
+      const amt = parseFloat(document.getElementById('expenseAmount').value);
       const date = document.getElementById('expenseDate').value || new Date().toISOString().slice(0,10);
-      if (isNaN(amount) || amount <= 0) return alert('مبلغ مصرف را وارد کنید');
-      
-      const docName = selectedFileData ? selectedFileData.name : '';
-      const docDataUrl = selectedFileData ? selectedFileData.dataUrl : '';
-      
+      if (isNaN(amt) || amt <= 0) return alert('مبلغ وارد کنید');
       expenses.push({
-        id: Date.now(),
-        category,
-        amount,
-        date,
-        docName,
-        docDataUrl
+        id: Date.now(), category: cat, amount: amt, date: date,
+        docName: selectedFileData?.name || '', docDataUrl: selectedFileData?.dataUrl || ''
       });
-      
-      // ریست فایل
       document.getElementById('expenseAmount').value = '';
       document.getElementById('expenseDoc').value = '';
       document.getElementById('fileNameDisplay').textContent = 'انتخاب نشده';
       selectedFileData = null;
       refreshUI();
     };
+    window.deleteExpense = (i) => { if(confirm('حذف؟')){ expenses.splice(i,1); refreshUI(); } };
 
-    // ثبت فروش
+    // فروش
     window.addSale = () => {
-      const birdCount = parseInt(document.getElementById('saleBirdCount').value, 10);
-      const pricePerBird = parseFloat(document.getElementById('salePricePerBird').value);
+      const c = parseInt(document.getElementById('saleBirdCount').value, 10);
+      const p = parseFloat(document.getElementById('salePricePerBird').value);
       const date = document.getElementById('saleDate').value || new Date().toISOString().slice(0,10);
-      if (isNaN(birdCount) || birdCount <=0 || isNaN(pricePerBird) || pricePerBird<=0) return alert('مقادیر فروش صحیح نیست');
-      const total = birdCount * pricePerBird;
-      sales.push({ id: Date.now(), birdCount, pricePerBird, total, date });
+      if (isNaN(c)||c<=0||isNaN(p)||p<=0) return alert('مقادیر صحیح وارد کنید');
+      sales.push({ id: Date.now(), birdCount: c, pricePerBird: p, total: c*p, date });
       document.getElementById('saleBirdCount').value = '';
       document.getElementById('salePricePerBird').value = '';
       refreshUI();
     };
+    window.deleteSale = (i) => { if(confirm('حذف؟')){ sales.splice(i,1); refreshUI(); } };
 
-    function renderExpenseList() {
-      const container = document.getElementById('expenseListContainer');
-      if (!expenses.length) {
-        container.innerHTML = '<div style="padding:12px;text-align:center;">مصرفی ثبت نشده</div>';
-        return;
-      }
-      container.innerHTML = expenses.slice().reverse().map((e, idx) => {
-        const originalIndex = expenses.length - 1 - idx;
-        const docIcon = e.docName ? `<span class="doc-thumb" title="${e.docName}">📎 سند</span>` : '';
-        return `<div class="list-item">
-          <span>${e.category} ${docIcon} - ${e.date}</span>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <strong>${formatMoney(e.amount)}</strong>
-            <button onclick="window.deleteExpense(${originalIndex})" style="background:#b23b2c; padding:2px 8px; font-size:0.7rem;">✕</button>
+    // رندر
+    function refreshUI() {
+      const a = getActiveSalon();
+      document.getElementById('activeSalonName').innerText = currentSalon === 'loy' ? 'لوی سالون' : 'کوچنی سالون';
+      document.getElementById('activePeriodDisplay').innerText = a.period;
+      document.getElementById('activeSalonChicks').innerText = a.chicks.toLocaleString('fa-AF');
+      document.getElementById('periodNumber').value = a.period;
+      document.getElementById('periodDays').value = a.periodDays;
+
+      document.getElementById('totalChicksAll').innerText = totalChicksAll().toLocaleString('fa-AF');
+      document.getElementById('totalDeathsAll').innerText = totalDeathsAll().toLocaleString('fa-AF');
+      document.getElementById('remainingBirdsAll').innerText = remainingAll().toLocaleString('fa-AF');
+      document.getElementById('totalExpenseAll').innerText = formatMoney(totalExpenses());
+      document.getElementById('totalSalesAll').innerText = formatMoney(totalSalesAmount());
+      const pl = profitLoss();
+      document.getElementById('profitLossAll').innerText = formatMoney(pl);
+      document.getElementById('headerProfitText').innerText = formatMoney(pl);
+      document.getElementById('profitHeader').style.background = pl >= 0 ? '#ffb300' : '#ef5350';
+
+      // شرکا
+      document.getElementById('totalCapital').innerText = formatMoney(totalCapital());
+      const pc = document.getElementById('partnersContainer');
+      pc.innerHTML = partners.length === 0 ? '<div style="color:#888;">هیچ شریکی ثبت نشده</div>' :
+        partners.map((p,i) => `<div class="partner-card">
+          <strong>${p.name}</strong> | ${formatMoney(p.capital)} (${partnerSharePercent(p.capital)}٪)
+          <div class="actions">
+            <button onclick="window.editPartner(${i})" style="background:#e09f3e; padding:4px 10px;">✎</button>
+            <button onclick="window.removePartner(${i})" style="background:#c62828; padding:4px 10px;">✕</button>
           </div>
-        </div>`;
-      }).join('');
+        </div>`).join('');
+
+      // لیست مصارف
+      const ec = document.getElementById('expenseListContainer');
+      ec.innerHTML = expenses.length === 0 ? '<div style="text-align:center;color:#888;">مصرفی ثبت نشده</div>' :
+        expenses.slice().reverse().map((e,i) => {
+          const oi = expenses.length-1-i;
+          const doc = e.docName ? `<span class="badge">📎 ${e.docName}</span>` : '';
+          return `<div class="list-item">
+            <div class="item-info">${e.category} ${doc} <small>${e.date}</small></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="item-amount">${formatMoney(e.amount)}</span>
+              <button onclick="window.deleteExpense(${oi})" style="background:#c62828; padding:4px 8px;">✕</button>
+            </div>
+          </div>`;
+        }).join('');
+
+      // لیست فروش
+      const sc = document.getElementById('saleListContainer');
+      sc.innerHTML = sales.length === 0 ? '<div style="text-align:center;color:#888;">فروشی ثبت نشده</div>' :
+        sales.slice().reverse().map((s,i) => {
+          const oi = sales.length-1-i;
+          return `<div class="list-item">
+            <div class="item-info">🐔 ${s.birdCount} عدد × ${formatMoney(s.pricePerBird)} <small>${s.date}</small></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="item-amount">${formatMoney(s.total)}</span>
+              <button onclick="window.deleteSale(${oi})" style="background:#c62828; padding:4px 8px;">✕</button>
+            </div>
+          </div>`;
+        }).join('');
+
+      drawChart();
+      saveToStorage();
     }
-
-    window.deleteExpense = (index) => {
-      if (confirm('این مصرف حذف شود؟')) {
-        expenses.splice(index, 1);
-        refreshUI();
-      }
-    };
-
-    function renderSaleList() {
-      const container = document.getElementById('saleListContainer');
-      if (!sales.length) {
-        container.innerHTML = '<div style="padding:12px;text-align:center;">فروشی ثبت نشده</div>';
-        return;
-      }
-      container.innerHTML = sales.slice().reverse().map((s, idx) => {
-        const originalIndex = sales.length - 1 - idx;
-        return `<div class="list-item">
-          <span>🐔 ${s.birdCount} عدد × ${formatMoney(s.pricePerBird)} (${s.date})</span>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <strong>${formatMoney(s.total)}</strong>
-            <button onclick="window.deleteSale(${originalIndex})" style="background:#b23b2c; padding:2px 8px; font-size:0.7rem;">✕</button>
-          </div>
-        </div>`;
-      }).join('');
-    }
-
-    window.deleteSale = (index) => {
-      if (confirm('این فروش حذف شود؟')) {
-        sales.splice(index, 1);
-        refreshUI();
-      }
-    };
 
     function drawChart() {
-      const canvas = document.getElementById('financeChart');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const w = canvas.parentElement.clientWidth - 30;
-      canvas.width = Math.max(250, w);
-      canvas.height = 170;
-      const expenseVal = totalExpenses();
-      const saleVal = totalSalesAmount();
-      const profitVal = profitLoss();
+      const cv = document.getElementById('financeChart');
+      if (!cv) return;
+      const ctx = cv.getContext('2d');
+      const w = cv.parentElement.clientWidth - 32;
+      cv.width = Math.max(250, w);
+      cv.height = 170;
+      const ev = totalExpenses(), sv = totalSalesAmount(), pv = profitLoss();
+      const vals = [ev, sv, pv];
       const labels = ['مصارف', 'فروش', 'فایده/تاوان'];
-      const values = [expenseVal, saleVal, profitVal];
-      const colors = ['#bc4742', '#2d6a4f', profitVal >=0 ? '#40916c' : '#bc4742'];
-      
-      ctx.clearRect(0,0,canvas.width, canvas.height);
-      const barWidth = Math.min(62, (canvas.width-80)/3);
-      const startX = (canvas.width - (barWidth*3 + 50))/2 + 20;
-      const maxVal = Math.max(expenseVal, saleVal, Math.abs(profitVal), 1);
-      
-      for (let i=0; i<3; i++) {
-        const h = Math.abs(values[i]) / maxVal * 105;
-        const x = startX + i*(barWidth+20);
+      const colors = ['#c62828', '#2e7d32', pv>=0?'#4caf50':'#c62828'];
+      ctx.clearRect(0,0,cv.width,cv.height);
+      const bw = Math.min(60, (cv.width-80)/3);
+      const sx = (cv.width - (bw*3+50))/2 + 20;
+      const mx = Math.max(ev, sv, Math.abs(pv), 1);
+      for (let i=0;i<3;i++) {
+        const h = Math.abs(vals[i])/mx*105;
+        const x = sx + i*(bw+20);
         const y = 130 - Math.max(12, h);
         ctx.fillStyle = colors[i];
-        ctx.fillRect(x, y, barWidth, Math.max(12, h));
-        ctx.fillStyle = '#0b2b1d';
+        ctx.fillRect(x, y, bw, Math.max(12, h));
+        ctx.fillStyle = '#1a2e1f';
         ctx.font = 'bold 11px "Segoe UI"';
         ctx.textAlign = 'center';
-        ctx.fillText(labels[i], x+barWidth/2, 150);
-        ctx.fillText(formatMoney(values[i]), x+barWidth/2, y-6);
+        ctx.fillText(labels[i], x+bw/2, 150);
+        ctx.fillText(formatMoney(vals[i]), x+bw/2, y-6);
       }
     }
 
     window.loadDemoData = () => { setDemoData(); refreshUI(); };
     window.clearAllData = () => {
       if (confirm('همه داده‌ها حذف شوند؟')) {
-        totalChicks = 14000;
-        partners = []; 
-        deaths = 0; 
-        expenses = []; 
-        sales = [];
+        salons = { loy: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 }, kochni: { chicks: 7000, deaths: 0, period: 1, periodDays: 45 } };
+        partners = []; expenses = []; sales = [];
         refreshUI();
       }
     };
 
-    // تنظیم تاریخ امروز
     window.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().slice(0,10);
       document.getElementById('expenseDate').value = today;
       document.getElementById('saleDate').value = today;
+      document.getElementById('chickBuyDate').value = today;
       loadFromStorage();
       refreshUI();
     });
