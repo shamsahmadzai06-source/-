@@ -115,6 +115,7 @@
     }
     button.danger { background: #b23b2c; }
     button.secondary { background: #5f7e6b; }
+    button.warning { background: #e09f3e; }
     .file-attach {
       background: #f1f7f2;
       padding: 6px 10px;
@@ -165,7 +166,20 @@
       gap: 8px;
       margin: 5px 0;
     }
+    .chick-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f0f7f2;
+      padding: 8px 14px;
+      border-radius: 18px;
+    }
     hr { border: 0.5px solid #cbdcd0; margin: 14px 0; }
+    .action-icons {
+      display: flex;
+      gap: 6px;
+      margin-right: auto;
+    }
     @media (max-width: 500px) { .form-row { flex-direction: column; align-items: stretch; } }
   </style>
 </head>
@@ -181,13 +195,48 @@
 
   <!-- کارت های آماری -->
   <div class="cards-grid">
-    <div class="card"><div class="card-icon">🐣</div><div class="card-value">14,000</div><div class="card-label">چوچه اولیه</div></div>
-    <div class="card"><div class="card-icon">💀</div><div class="card-value" id="totalDeaths">0</div><div class="card-label">تلفات کل</div></div>
-    <div class="card"><div class="card-icon">🐓</div><div class="card-value" id="remainingBirds">14,000</div><div class="card-label">موجودی زنده</div></div>
-    <div class="card"><div class="card-icon">💸</div><div class="card-value" id="totalExpense">۰</div><div class="card-label">مصارف کل</div></div>
-    <div class="card"><div class="card-icon">🛒</div><div class="card-value" id="totalSales">۰</div><div class="card-label">فروش کل</div></div>
-    <div class="card"><div class="card-icon">⚖️</div><div class="card-value" id="profitLossCard">۰</div><div class="card-label">فایده / تاوان</div></div>
+    <div class="card">
+      <div class="card-icon">🐣</div>
+      <div class="card-value" id="totalChicks">14,000</div>
+      <div class="card-label">چوچه اولیه</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💀</div>
+      <div class="card-value" id="totalDeaths">0</div>
+      <div class="card-label">تلفات کل</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🐓</div>
+      <div class="card-value" id="remainingBirds">14,000</div>
+      <div class="card-label">موجودی زنده</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💸</div>
+      <div class="card-value" id="totalExpense">۰</div>
+      <div class="card-label">مصارف کل</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛒</div>
+      <div class="card-value" id="totalSales">۰</div>
+      <div class="card-label">فروش کل</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <div class="card-value" id="profitLossCard">۰</div>
+      <div class="card-label">فایده / تاوان</div>
+    </div>
   </div>
+
+  <!-- مدیریت چوچه ها -->
+  <div class="section-title">🐣 مدیریت چوچه‌ها</div>
+  <div class="chick-control">
+    <span>تعداد فعلی چوچه: <strong id="currentChicksDisplay">14,000</strong></span>
+    <input type="number" id="chickAdjustment" placeholder="تعداد" min="1" style="width:100px;">
+    <button onclick="adjustChicks('add')" class="secondary">➕ افزودن</button>
+    <button onclick="adjustChicks('remove')" class="warning">➖ کم کردن</button>
+    <button onclick="resetChicks()" class="danger">↺ تنظیم به ۱۴,۰۰۰</button>
+  </div>
+  <small style="color:#4a6b56;">افزودن چوچه جدید یا کم کردن (فروش عمده/انتقال)</small>
 
   <!-- بخش شرکا با سرمایه پولی -->
   <div class="section-title">🤝 شرکا و سرمایه (افغانی)</div>
@@ -197,7 +246,7 @@
     <button onclick="addPartner()">➕ افزودن شریک</button>
   </div>
   <div id="partnersContainer"></div>
-  <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span> | فیصدی سهم خودکار محاسبه میشود</small>
+  <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span> | برای حذف یا ویرایش از دکمه‌های کنار هر شریک استفاده کنید</small>
 
   <!-- تلفات روزانه -->
   <div class="section-title">⚠️ ثبت تلفات روزانه</div>
@@ -245,7 +294,7 @@
   <div class="chart-container">
     <div style="display:flex; justify-content:space-between;">
       <span>📈 مصارف / فروش / فایده</span>
-      <span id="chartLabel" style="background:#d4e2d7; padding:2px 12px; border-radius:14px;">هفته جاری</span>
+      <span id="chartLabel" style="background:#d4e2d7; padding:2px 12px; border-radius:14px;">نمای کلی</span>
     </div>
     <canvas id="financeChart" width="400" height="170"></canvas>
   </div>
@@ -269,7 +318,7 @@
     }
 
     // ---------- STATE ----------
-    const INITIAL_CHICKS = 14000;
+    let totalChicks = 14000;      // تعداد کل چوچه‌های اولیه (قابل تغییر)
     let partners = [];            // { name, capital }
     let deaths = 0;
     let expenses = [];           // { id, category, amount, date, docName, docDataUrl }
@@ -278,16 +327,17 @@
 
     // ذخیره و بازیابی localStorage
     function saveToStorage() {
-      localStorage.setItem('arghandi_farm_v2', JSON.stringify({
-        partners, deaths, expenses, sales
+      localStorage.setItem('arghandi_farm_v3', JSON.stringify({
+        totalChicks, partners, deaths, expenses, sales
       }));
     }
 
     function loadFromStorage() {
-      const raw = localStorage.getItem('arghandi_farm_v2');
+      const raw = localStorage.getItem('arghandi_farm_v3');
       if (raw) {
         try {
           const data = JSON.parse(raw);
+          totalChicks = data.totalChicks || 14000;
           partners = data.partners || [];
           deaths = data.deaths || 0;
           expenses = data.expenses || [];
@@ -299,6 +349,7 @@
     }
 
     function setDemoData() {
+      totalChicks = 14000;
       partners = [
         { name: 'احمد', capital: 200000 },
         { name: 'محمود', capital: 500000 },
@@ -328,7 +379,7 @@
       return total > 0 ? ((capital / total) * 100).toFixed(2) : 0;
     }
     function getRemainingBirds() {
-      return Math.max(0, INITIAL_CHICKS - deaths);
+      return Math.max(0, totalChicks - deaths);
     }
     function totalExpenses() {
       return expenses.reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
@@ -345,6 +396,8 @@
 
     // به‌روزرسانی UI
     function refreshUI() {
+      document.getElementById('totalChicks').innerText = totalChicks.toLocaleString('fa-AF');
+      document.getElementById('currentChicksDisplay').innerText = totalChicks.toLocaleString('fa-AF');
       document.getElementById('totalDeaths').innerText = deaths.toLocaleString('fa-AF');
       document.getElementById('remainingBirds').innerText = getRemainingBirds().toLocaleString('fa-AF');
       document.getElementById('totalExpense').innerText = formatMoney(totalExpenses());
@@ -362,6 +415,32 @@
       saveToStorage();
     }
 
+    // مدیریت چوچه ها
+    window.adjustChicks = (action) => {
+      const val = parseInt(document.getElementById('chickAdjustment').value, 10);
+      if (isNaN(val) || val <= 0) {
+        alert('لطفاً یک تعداد معتبر وارد کنید');
+        return;
+      }
+      if (action === 'add') {
+        totalChicks += val;
+      } else if (action === 'remove') {
+        if (val > totalChicks) {
+          alert('تعداد وارد شده بیشتر از چوچه‌های موجود است');
+          return;
+        }
+        totalChicks -= val;
+      }
+      document.getElementById('chickAdjustment').value = '';
+      refreshUI();
+    };
+
+    window.resetChicks = () => {
+      totalChicks = 14000;
+      document.getElementById('chickAdjustment').value = '';
+      refreshUI();
+    };
+
     // شرکا
     function renderPartners() {
       const container = document.getElementById('partnersContainer');
@@ -374,11 +453,36 @@
         const share = partnerSharePercent(p.capital);
         return `<div class="partner-card">
           <strong>${p.name}</strong> : سرمایه ${formatMoney(p.capital)} (${share}٪)
-          <button style="margin-right:auto; background:none; border:none; color:#a33; cursor:pointer;" onclick="window.removePartner(${idx})">✕</button>
+          <div class="action-icons">
+            <button onclick="window.editPartner(${idx})" style="background:#e09f3e; padding:4px 8px; font-size:0.7rem;" title="ویرایش">✎</button>
+            <button onclick="window.removePartner(${idx})" style="background:#b23b2c; padding:4px 8px; font-size:0.7rem;" title="حذف">✕</button>
+          </div>
         </div>`;
       }).join('');
     }
-    window.removePartner = (index) => { partners.splice(index,1); refreshUI(); };
+
+    window.removePartner = (index) => {
+      if (confirm('آیا از حذف این شریک اطمینان دارید؟')) {
+        partners.splice(index, 1);
+        refreshUI();
+      }
+    };
+
+    window.editPartner = (index) => {
+      const partner = partners[index];
+      const newName = prompt('نام شریک:', partner.name);
+      if (newName === null) return;
+      const newCapital = prompt('سرمایه (افغانی):', partner.capital);
+      if (newCapital === null) return;
+      const capitalNum = parseFloat(newCapital);
+      if (isNaN(capitalNum) || capitalNum <= 0) {
+        alert('سرمایه باید عدد مثبت باشد');
+        return;
+      }
+      partners[index] = { name: newName.trim() || partner.name, capital: capitalNum };
+      refreshUI();
+    };
+
     window.addPartner = () => {
       const name = document.getElementById('partnerName').value.trim();
       const capital = parseFloat(document.getElementById('partnerCapital').value);
@@ -462,14 +566,25 @@
         container.innerHTML = '<div style="padding:12px;text-align:center;">مصرفی ثبت نشده</div>';
         return;
       }
-      container.innerHTML = expenses.slice().reverse().map(e => {
+      container.innerHTML = expenses.slice().reverse().map((e, idx) => {
+        const originalIndex = expenses.length - 1 - idx;
         const docIcon = e.docName ? `<span class="doc-thumb" title="${e.docName}">📎 سند</span>` : '';
         return `<div class="list-item">
           <span>${e.category} ${docIcon} - ${e.date}</span>
-          <strong>${formatMoney(e.amount)}</strong>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <strong>${formatMoney(e.amount)}</strong>
+            <button onclick="window.deleteExpense(${originalIndex})" style="background:#b23b2c; padding:2px 8px; font-size:0.7rem;">✕</button>
+          </div>
         </div>`;
       }).join('');
     }
+
+    window.deleteExpense = (index) => {
+      if (confirm('این مصرف حذف شود؟')) {
+        expenses.splice(index, 1);
+        refreshUI();
+      }
+    };
 
     function renderSaleList() {
       const container = document.getElementById('saleListContainer');
@@ -477,10 +592,24 @@
         container.innerHTML = '<div style="padding:12px;text-align:center;">فروشی ثبت نشده</div>';
         return;
       }
-      container.innerHTML = sales.slice().reverse().map(s => 
-        `<div class="list-item"><span>🐔 ${s.birdCount} عدد × ${formatMoney(s.pricePerBird)} (${s.date})</span> <strong>${formatMoney(s.total)}</strong></div>`
-      ).join('');
+      container.innerHTML = sales.slice().reverse().map((s, idx) => {
+        const originalIndex = sales.length - 1 - idx;
+        return `<div class="list-item">
+          <span>🐔 ${s.birdCount} عدد × ${formatMoney(s.pricePerBird)} (${s.date})</span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <strong>${formatMoney(s.total)}</strong>
+            <button onclick="window.deleteSale(${originalIndex})" style="background:#b23b2c; padding:2px 8px; font-size:0.7rem;">✕</button>
+          </div>
+        </div>`;
+      }).join('');
     }
+
+    window.deleteSale = (index) => {
+      if (confirm('این فروش حذف شود؟')) {
+        sales.splice(index, 1);
+        refreshUI();
+      }
+    };
 
     function drawChart() {
       const canvas = document.getElementById('financeChart');
@@ -518,7 +647,11 @@
     window.loadDemoData = () => { setDemoData(); refreshUI(); };
     window.clearAllData = () => {
       if (confirm('همه داده‌ها حذف شوند؟')) {
-        partners = []; deaths = 0; expenses = []; sales = [];
+        totalChicks = 14000;
+        partners = []; 
+        deaths = 0; 
+        expenses = []; 
+        sales = [];
         refreshUI();
       }
     };
