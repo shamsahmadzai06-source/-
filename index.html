@@ -2,811 +2,960 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>فارم ارغندی | سیستم مدیریت مرغداری حرفه‌ای</title>
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22short_name%22%3A%22%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230d1b0f%22%2C%22theme_color%22%3A%22%231b5e20%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%3E%3Cstop%20offset%3D'0%25'%20style%3D'stop-color%3A%231b5e20'%2F%3E%3Cstop%20offset%3D'100%25'%20style%3D'stop-color%3A%234caf50'%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'45'%20fill%3D'url(%23g)'%2F%3E%3Ctext%20x%3D'50'%20y%3D'68'%20font-size%3D'50'%20text-anchor%3D'middle'%20fill%3D'white'%20font-weight%3D'bold'%3E%F0%9F%90%94%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>فارم ارغندی | مدیریت مرغداری</title>
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%81%D8%A7%D8%B1%D9%85%20%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22short_name%22%3A%22%D8%A7%D8%B1%D8%BA%D9%86%D8%AF%DB%8C%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a2f1d%22%2C%22theme_color%22%3A%22%232e7d32%22%7D">
   <style>
     :root {
-      --primary: #1b5e20;
-      --primary-light: #4caf50;
-      --primary-dark: #0d3b0f;
-      --gold: #ffb300;
-      --gold-light: #ffe082;
-      --danger: #c62828;
-      --warning: #e65100;
-      --bg-dark: #0d1b0f;
-      --bg-card: #1a2f1d;
-      --text-light: #b8c5ba;
-      --text: #e8f5e9;
-      --border: #2d4a2f;
-      --radius: 20px;
-      --radius-sm: 14px;
-      --shadow: 0 8px 32px rgba(0,0,0,0.3);
-      --shadow-sm: 0 4px 16px rgba(0,0,0,0.2);
+      --bg: #1a2f1d; --surface: #243828; --surface2: #2d4a2f;
+      --primary: #2e7d32; --primary-light: #4caf50; --gold: #ffb300;
+      --danger: #ef5350; --warning: #ff9800; --text: #e8f5e9;
+      --text2: #a5d6a7; --border: #3d5a3f; --radius: 12px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(135deg, #0a1a0c 0%, #0d1b0f 30%, #0f1f11 60%, #0a1a0c 100%);
-      padding: 16px;
-      direction: rtl;
-      color: var(--text);
-      font-family: 'Segoe UI', 'Vazirmatn', Tahoma, sans-serif;
-      min-height: 100vh;
-      background-attachment: fixed;
+      background: #0d1b0f; color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 10px; min-height: 100vh; direction: rtl;
     }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(ellipse at 20% 50%, rgba(76,175,80,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(255,179,0,0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(27,94,32,0.1) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+    .app {
+      max-width: 1000px; margin: 0 auto;
+      background: var(--bg); border-radius: 20px;
+      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
     }
-    .app-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      background: rgba(26,47,29,0.85);
-      backdrop-filter: blur(20px);
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      padding: 0;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      position: relative;
-      z-index: 1;
-    }
+
     /* هدر */
-    .farm-header {
-      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 30%, #1b5e20 60%, #0d3b0f 100%);
-      color: white;
-      padding: 24px 28px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
+    .header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32, #1b5e20);
+      padding: 18px 20px; display: flex; align-items: center;
+      gap: 12px; flex-wrap: wrap; border-bottom: 3px solid var(--primary-light);
     }
-    .farm-header::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      right: -30px;
-      width: 180px;
-      height: 180px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 50%;
+    .logo {
+      background: var(--gold); border-radius: 14px;
+      width: 52px; height: 52px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 30px; box-shadow: 0 4px 15px rgba(255,179,0,0.5);
     }
-    .farm-header::after {
-      content: '';
-      position: absolute;
-      bottom: -60px;
-      left: -20px;
-      width: 150px;
-      height: 150px;
-      background: rgba(255,255,255,0.02);
-      border-radius: 50%;
-    }
-    .logo-container {
-      background: linear-gradient(135deg, #ffb300, #ff8f00);
-      border-radius: 20px;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px rgba(255,179,0,0.3);
-      position: relative;
-      z-index: 1;
-      font-size: 40px;
-    }
-    .header-info { flex: 1; position: relative; z-index: 1; }
-    .header-info h1 { font-size: 2rem; font-weight: 900; letter-spacing: 1px; }
-    .header-info .subtitle { font-size: 0.9rem; opacity: 0.85; color: #c8e6c9; margin-top: 4px; }
+    .header-info { flex: 1; }
+    .header-info h1 { font-size: 1.6rem; margin: 0; }
+    .header-info small { color: var(--text2); font-size: 0.75rem; }
     .profit-badge {
-      background: linear-gradient(135deg, #ffb300, #ff8f00);
-      color: #1b5e20;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 900;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 24px rgba(255,179,0,0.3);
-      position: relative;
-      z-index: 1;
+      background: var(--gold); color: #1b5e20; padding: 10px 18px;
+      border-radius: 25px; font-weight: 800; font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(255,179,0,0.4);
     }
+
     /* تب‌های سالون */
-    .salon-tabs {
-      display: flex;
-      gap: 8px;
-      padding: 16px 20px;
-      background: rgba(13,27,15,0.6);
-      border-bottom: 1px solid var(--border);
+    .tabs {
+      display: flex; gap: 8px; padding: 12px 16px;
+      background: rgba(0,0,0,0.3); border-bottom: 1px solid var(--border);
     }
-    .salon-tab {
-      flex: 1;
-      padding: 14px 24px;
-      border-radius: 18px;
-      text-align: center;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.3s;
-      background: rgba(255,255,255,0.05);
-      border: 2px solid transparent;
-      font-size: 1rem;
-      color: #b8c5ba;
-      position: relative;
-      overflow: hidden;
+    .tab {
+      flex: 1; padding: 12px 16px; text-align: center;
+      border-radius: 14px; font-weight: 700; cursor: pointer;
+      background: rgba(255,255,255,0.05); border: 2px solid transparent;
+      color: var(--text2); transition: all 0.3s; font-size: 0.9rem;
     }
-    .salon-tab::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(255,179,0,0.1));
-      opacity: 0;
-      transition: opacity 0.3s;
+    .tab.active {
+      background: var(--primary); color: #fff;
+      border-color: var(--primary-light); box-shadow: 0 4px 15px rgba(46,125,50,0.4);
     }
-    .salon-tab.active {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      color: white;
-      border-color: #4caf50;
-      box-shadow: 0 8px 24px rgba(27,94,32,0.4);
-    }
-    .salon-tab.active::before { opacity: 1; }
-    .salon-tab:hover:not(.active) { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
-    .salon-tab .badge-count {
-      display: block;
-      font-size: 0.75rem;
-      opacity: 0.8;
-      margin-top: 4px;
-    }
-    /* محتوا */
-    .main-content { padding: 20px; }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+    .tab:hover:not(.active) { background: rgba(255,255,255,0.1); }
+    .tab small { display: block; font-weight: 400; opacity: 0.8; font-size: 0.7rem; margin-top: 2px; }
+
+    /* محتوای اصلی */
+    .content { padding: 16px; }
+
+    /* کارت‌ها */
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin-bottom: 16px;
     }
     .card {
-      background: linear-gradient(145deg, rgba(30,50,33,0.9), rgba(20,35,22,0.95));
-      border-radius: var(--radius);
-      padding: 20px 16px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-      transition: all 0.3s;
-      backdrop-filter: blur(10px);
+      background: var(--surface); border-radius: var(--radius);
+      padding: 16px 12px; text-align: center;
+      border: 1px solid var(--border); transition: transform 0.2s;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); border-color: rgba(255,179,0,0.3); }
-    .card-icon { font-size: 2.4rem; margin-bottom: 8px; }
-    .card-value { font-weight: 900; font-size: 1.4rem; color: #fff; }
-    .card-label { font-size: 0.8rem; color: var(--text-light); margin-top: 4px; }
-    .section-title {
-      font-weight: 900;
-      margin: 24px 0 14px;
-      color: #fff;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
+    .card:hover { transform: translateY(-2px); }
+    .card .icon { font-size: 2rem; margin-bottom: 4px; }
+    .card .value { font-size: 1.2rem; font-weight: 800; }
+    .card .label { font-size: 0.7rem; color: var(--text2); margin-top: 2px; }
+
+    /* بخش‌ها */
+    .section {
+      font-weight: 700; margin: 18px 0 10px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; gap: 8px; font-size: 1rem;
     }
-    .section-title .icon { font-size: 1.5rem; }
-    .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-      align-items: center;
+
+    /* فرم‌ها */
+    .row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 10px; align-items: center;
     }
     input, select, button {
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      background: rgba(20,35,22,0.8);
-      color: #fff;
-      font-size: 0.9rem;
-      outline: none;
-      transition: all 0.3s;
-      font-family: inherit;
-      backdrop-filter: blur(10px);
+      padding: 10px 12px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: #fff; font-size: 0.85rem; outline: none;
+      font-family: inherit; transition: all 0.2s;
     }
-    input::placeholder, select { color: #889988; }
-    input:focus, select:focus {
-      border-color: var(--primary-light);
-      box-shadow: 0 0 0 4px rgba(76,175,80,0.15);
-      background: rgba(30,50,33,0.9);
-    }
+    input:focus, select:focus { border-color: var(--primary-light); background: var(--surface2); }
+    input::placeholder { color: #6a8a6e; }
+    select option { background: var(--surface); color: #fff; }
     button {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      color: white;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      transition: all 0.3s;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 12px rgba(27,94,32,0.3);
+      background: var(--primary); border: none; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center;
+      gap: 5px; white-space: nowrap; font-size: 0.85rem;
     }
-    button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,94,32,0.5); }
-    button.gold { background: linear-gradient(135deg, #ffb300, #ff8f00); color: #1b5e20; }
-    button.gold:hover { box-shadow: 0 8px 24px rgba(255,179,0,0.4); }
-    button.danger { background: linear-gradient(135deg, #c62828, #b71c1c); }
-    button.warning { background: linear-gradient(135deg, #e65100, #bf360c); }
-    button.secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
-    button.report-btn { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-    .file-attach {
-      background: rgba(255,255,255,0.05);
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      border: 1.5px dashed rgba(255,255,255,0.2);
-      cursor: pointer;
-    }
-    .list-container {
-      background: rgba(20,35,22,0.5);
-      border-radius: var(--radius);
-      padding: 14px;
-      max-height: 300px;
-      overflow-y: auto;
-      margin: 12px 0;
-      border: 1px solid rgba(255,255,255,0.08);
+    button:hover { background: #388e3c; transform: translateY(-1px); }
+    button.gold { background: var(--gold); color: #1b5e20; }
+    button.gold:hover { background: #ffa000; }
+    button.danger { background: var(--danger); }
+    button.danger:hover { background: #c62828; }
+    button.warn { background: var(--warning); color: #1b5e20; }
+    button.warn:hover { background: #f57c00; }
+    button.sec { background: #455a64; }
+    button.sec:hover { background: #37474f; }
+
+    /* لیست‌ها */
+    .list {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 10px; max-height: 250px; overflow-y: auto;
+      margin: 8px 0; border: 1px solid var(--border);
     }
     .list-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(30,50,33,0.7);
-      margin-bottom: 8px;
-      padding: 14px 18px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255,255,255,0.06);
-      gap: 12px;
-      flex-wrap: wrap;
-      transition: all 0.2s;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface2); padding: 10px 14px; border-radius: 10px;
+      margin-bottom: 6px; gap: 10px; flex-wrap: wrap;
+      border: 1px solid rgba(255,255,255,0.05);
     }
-    .list-item:hover { background: rgba(40,60,43,0.8); }
-    .badge {
-      background: rgba(76,175,80,0.2);
-      color: #a5d6a7;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
+    .list-item small { color: var(--text2); font-size: 0.7rem; }
+
+    /* نمودار */
+    .chart-box {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 16px; margin-top: 10px; border: 1px solid var(--border);
     }
-    .badge.gold { background: rgba(255,179,0,0.2); color: #ffe082; }
-    .partner-card {
-      background: rgba(30,50,33,0.7);
-      border-radius: var(--radius-sm);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 8px 0;
-      border: 1px solid rgba(255,255,255,0.06);
-      flex-wrap: wrap;
-    }
-    .chart-container {
-      background: rgba(20,35,22,0.5);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin: 16px 0;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    canvas { width: 100%; height: auto; max-height: 220px; display: block; }
-    /* مودال گزارش */
+    canvas { width: 100%; max-height: 200px; display: block; }
+
+    /* مودال */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); z-index: 1000;
+      justify-content: center; align-items: center; padding: 20px;
     }
-    .modal-overlay.active { display: flex; }
+    .modal-overlay.show { display: flex; }
     .modal {
-      background: linear-gradient(145deg, #1a2f1d, #0d1b0f);
-      border-radius: 24px;
-      padding: 28px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      background: var(--bg); border-radius: 16px; padding: 24px;
+      max-width: 750px; width: 100%; max-height: 85vh;
+      overflow-y: auto; border: 2px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     }
-    .modal h2 { color: #ffb300; margin-bottom: 16px; }
-    .modal table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-    .modal th, .modal td { padding: 10px; border: 1px solid rgba(255,255,255,0.2); text-align: center; }
-    .modal th { background: rgba(76,175,80,0.2); }
+    .modal h3 { margin-bottom: 12px; color: var(--gold); }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.8rem; }
+    th, td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+    th { background: rgba(76,175,80,0.2); }
+
+    /* ریسپانسیو */
     @media (max-width: 600px) {
-      .farm-header { flex-direction: column; text-align: center; }
-      .form-row { flex-direction: column; align-items: stretch; }
-      .salon-tabs { flex-direction: column; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media print {
-      body { background: white; color: black; }
-      .app-container { box-shadow: none; border: none; }
-      .modal-overlay { position: static; background: white; }
-      .modal { box-shadow: none; border: 1px solid #ccc; }
-      button, .salon-tabs, .farm-header { display: none; }
+      .header { flex-direction: column; text-align: center; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .row { flex-direction: column; align-items: stretch; }
+      .tabs { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-<div class="app-container">
+
+<div class="app">
   <!-- هدر -->
-  <div class="farm-header">
-    <div class="logo-container">🐔</div>
+  <div class="header">
+    <div class="logo">🐔</div>
     <div class="header-info">
       <h1>فارم ارغندی</h1>
-      <div class="subtitle">سیستم مدیریت هوشمند مرغداری | پروش مرغ گوشتی</div>
+      <small>سیستم مدیریت هوشمند مرغداری</small>
     </div>
-    <div class="profit-badge">
-      <span>📊</span> <span id="headerProfitText">۰ ؋</span>
-    </div>
+    <div class="profit-badge" id="headerProfit">۰ ؋</div>
   </div>
 
   <!-- تب‌های سالون -->
-  <div class="salon-tabs">
-    <div class="salon-tab active" data-salon="loy" onclick="switchSalon('loy')">
+  <div class="tabs">
+    <div class="tab active" data-salon="loy" onclick="changeSalon('loy')">
       🏠 لوی سالون
-      <span class="badge-count" id="loySummary">۰ چوچه | دوره ۱</span>
+      <small id="loySummary">۰ چوچه | دوره ۱</small>
     </div>
-    <div class="salon-tab" data-salon="kochni" onclick="switchSalon('kochni')">
+    <div class="tab" data-salon="kochni" onclick="changeSalon('kochni')">
       🏡 کوچنی سالون
-      <span class="badge-count" id="kochniSummary">۰ چوچه | دوره ۱</span>
+      <small id="kochniSummary">۰ چوچه | دوره ۱</small>
     </div>
   </div>
 
-  <div class="main-content">
+  <!-- محتوا -->
+  <div class="content">
     <!-- کارت‌های سالون فعال -->
-    <div class="cards-grid" id="salonCards">
-      <div class="card"><div class="card-icon">🐣</div><div class="card-value" id="salonChicks">۰</div><div class="card-label">چوچه‌های سالون</div></div>
-      <div class="card"><div class="card-icon">💀</div><div class="card-value" id="salonDeaths">۰</div><div class="card-label">تلفات سالون</div></div>
-      <div class="card"><div class="card-icon">🐓</div><div class="card-value" id="salonRemaining">۰</div><div class="card-label">موجودی زنده</div></div>
-      <div class="card"><div class="card-icon">💸</div><div class="card-value" id="salonExpense">۰ ؋</div><div class="card-label">مصارف سالون</div></div>
-      <div class="card"><div class="card-icon">📅</div><div class="card-value" id="salonPeriod">۱</div><div class="card-label">دوره فعلی</div></div>
-      <div class="card"><div class="card-icon">⏱</div><div class="card-value" id="salonPeriodDays">۴۵</div><div class="card-label">روز دوره</div></div>
+    <div class="cards" id="activeSalonCards"></div>
+
+    <!-- کارت‌های مجموعی -->
+    <div class="cards">
+      <div class="card"><div class="icon">📊</div><div class="value" id="allChicks">۰</div><div class="label">کل چوچه‌ها</div></div>
+      <div class="card"><div class="icon">🛒</div><div class="value" id="allSales">۰ ؋</div><div class="label">فروش کل</div></div>
+      <div class="card"><div class="icon">⚖️</div><div class="value" id="allPL">۰ ؋</div><div class="label">فایده/تاوان کل</div></div>
     </div>
 
-    <!-- مجموع کل -->
-    <div class="cards-grid">
-      <div class="card"><div class="card-icon">📊</div><div class="card-value" id="totalChicksAll">۰</div><div class="card-label">کل چوچه‌ها</div></div>
-      <div class="card"><div class="card-icon">🛒</div><div class="card-value" id="totalSalesAll">۰ ؋</div><div class="card-label">فروش کل</div></div>
-      <div class="card"><div class="card-icon">⚖️</div><div class="card-value" id="profitLossAll">۰ ؋</div><div class="card-label">فایده/تاوان کل</div></div>
-    </div>
-
-    <!-- مدیریت دوره -->
-    <div class="section-title"><span class="icon">📅</span> مدیریت دوره سالون فعال</div>
-    <div class="form-row">
-      <input type="number" id="periodNumber" placeholder="شماره دوره" min="1" style="width:100px;">
-      <button onclick="setPeriod()">📋 تنظیم دوره</button>
-      <input type="number" id="periodDays" placeholder="مدت دوره (روز)" min="1" style="width:120px;">
-      <button onclick="setPeriodDays()">⏱ تنظیم روز</button>
+    <!-- دوره -->
+    <div class="section">📅 مدیریت دوره</div>
+    <div class="row">
+      <span>دوره:</span>
+      <input type="number" id="periodNum" placeholder="شماره" min="1" style="width:90px">
+      <button onclick="setPeriod()">تنظیم</button>
+      <span>روز:</span>
+      <input type="number" id="periodDaysInp" placeholder="مدت" min="1" style="width:90px">
+      <button onclick="setPeriodDays()">تنظیم</button>
     </div>
 
     <!-- خرید چوچه -->
-    <div class="section-title"><span class="icon">🛒</span> خرید چوچه برای سالون فعال</div>
-    <div class="form-row">
-      <input type="number" id="newChickCount" placeholder="تعداد چوچه" min="1" oninput="updateBuyTotal()">
-      <input type="number" id="pricePerChick" placeholder="قیمت فی دانه (؋)" min="0" step="0.1" oninput="updateBuyTotal()">
-      <input type="date" id="chickBuyDate">
-      <select id="chickSupplier">
-        <option value="">فروشنده...</option><option value="بازار کابل">بازار کابل</option>
-        <option value="جلال‌آباد">جلال‌آباد</option><option value="هرات">هرات</option><option value="محلی">محلی</option>
+    <div class="section">🛒 خرید چوچه برای این سالون</div>
+    <div class="row">
+      <input type="number" id="buyCount" placeholder="تعداد چوچه" min="1" style="flex:1" oninput="calcBuyTotal()">
+      <input type="number" id="buyPrice" placeholder="قیمت فی دانه (؋)" min="0" step="0.1" style="flex:1" oninput="calcBuyTotal()">
+      <input type="date" id="buyDate">
+      <select id="buySupplier" style="flex:1">
+        <option value="">فروشنده...</option>
+        <option>بازار کابل</option><option>جلال‌آباد</option><option>هرات</option><option>محلی</option>
       </select>
-      <button onclick="buyChicks()" class="gold">🛒 خرید</button>
+      <button class="gold" onclick="buyChicks()">خرید</button>
     </div>
-    <small>💰 هزینه: <span id="buyTotalDisplay">۰ ؋</span></small>
-
-    <!-- تنظیم مستقیم -->
-    <div class="form-row">
-      <input type="number" id="directChickCount" placeholder="تنظیم تعداد چوچه" min="0">
-      <button onclick="setDirectChicks()" class="warning">📝 تنظیم</button>
+    <div>💰 مجموع هزینه: <strong id="buyTotalDisplay">۰ ؋</strong></div>
+    <div class="row" style="margin-top:6px">
+      <input type="number" id="directChicks" placeholder="تنظیم مستقیم تعداد" min="0" style="flex:1">
+      <button class="warn" onclick="setChicksDirect()">تنظیم تعداد</button>
     </div>
 
     <!-- شرکا -->
-    <div class="section-title"><span class="icon">🤝</span> شرکا و سرمایه</div>
-    <div class="form-row">
-      <input type="text" id="partnerName" placeholder="اسم شریک">
-      <input type="number" id="partnerCapital" placeholder="سرمایه (؋)" min="0" step="1000">
-      <button onclick="addPartner()">➕ افزودن</button>
+    <div class="section">🤝 شرکا و سرمایه</div>
+    <div class="row">
+      <input type="text" id="partnerName" placeholder="اسم شریک" style="flex:2">
+      <input type="number" id="partnerCapital" placeholder="سرمایه (؋)" min="0" step="1000" style="flex:2">
+      <button onclick="addPartner()">افزودن شریک</button>
     </div>
     <div id="partnersContainer"></div>
-    <small>💰 مجموع سرمایه: <span id="totalCapital">۰ ؋</span></small>
+    <div>💰 مجموع سرمایه: <strong id="totalCapitalDisplay">۰ ؋</strong></div>
 
     <!-- تلفات -->
-    <div class="section-title"><span class="icon">⚠️</span> ثبت تلفات</div>
-    <div class="form-row">
-      <input type="number" id="deathCount" placeholder="تعداد تلفات" min="0">
-      <button onclick="recordDeath()" class="danger">ثبت تلفات</button>
+    <div class="section">⚠️ ثبت تلفات</div>
+    <div class="row">
+      <input type="number" id="deathInput" placeholder="تعداد تلفات امروز" min="0" style="flex:1">
+      <button class="danger" onclick="recordDeath()">ثبت تلفات</button>
     </div>
 
     <!-- مصارف -->
-    <div class="section-title"><span class="icon">🧾</span> ثبت مصارف</div>
-    <div class="form-row">
-      <select id="expenseCategory">
-        <option value="غذا">🍚 غذا</option><option value="واکسین">💉 واکسین</option>
-        <option value="ذغال">🔥 ذغال</option><option value="کرایه">🚚 کرایه</option>
-        <option value="معاش">👷 معاش</option><option value="دوا">🧪 دوا</option>
-        <option value="کود">🧹 کود</option><option value="سایر">📌 سایر</option>
+    <div class="section">🧾 ثبت مصارف</div>
+    <div class="row">
+      <select id="expCat" style="flex:1">
+        <option>غذا</option><option>واکسین</option><option>ذغال</option>
+        <option>کرایه موتر</option><option>معاش کارمند</option><option>دوا</option>
+        <option>کود</option><option>اسناد</option><option>سایر</option>
       </select>
-      <input type="number" id="expenseAmount" placeholder="مبلغ (؋)" min="0" step="0.1">
-      <input type="date" id="expenseDate">
-      <div class="file-attach">
-        <label for="expenseDoc" style="cursor:pointer;">📎 سند</label>
-        <input type="file" id="expenseDoc" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(this)">
-        <span id="fileNameDisplay">انتخاب نشده</span>
-      </div>
-      <button onclick="addExpense()">ثبت</button>
+      <input type="number" id="expAmt" placeholder="مبلغ (؋)" min="0" step="0.1" style="flex:1">
+      <input type="date" id="expDate">
+      <button onclick="addExpense()">ثبت مصرف</button>
     </div>
-    <div class="list-container" id="expenseListContainer"></div>
+    <div class="list" id="expenseList"></div>
 
     <!-- فروش -->
-    <div class="section-title"><span class="icon">🐔</span> فروش مرغ</div>
-    <div class="form-row">
-      <input type="number" id="saleBirdCount" placeholder="تعداد مرغ" min="1">
-      <input type="number" id="salePricePerBird" placeholder="قیمت فی مرغ" min="0" step="0.1">
-      <input type="date" id="saleDate">
-      <button onclick="addSale()">💵 ثبت فروش</button>
+    <div class="section">🐔 فروش مرغ</div>
+    <div class="row">
+      <input type="number" id="saleCount" placeholder="تعداد مرغ" min="1" style="flex:1">
+      <input type="number" id="salePrice" placeholder="قیمت فی مرغ (؋)" min="0" step="0.1" style="flex:1">
+      <input type="date" id="saleDateInput">
+      <button onclick="addSale()">ثبت فروش</button>
     </div>
-    <div class="list-container" id="saleListContainer"></div>
+    <div class="list" id="saleList"></div>
 
     <!-- نمودار -->
-    <div class="chart-container">
-      <span style="font-weight:700;">📈 نمودار مالی سالون فعال</span>
+    <div class="chart-box">
+      <strong>📈 نمودار مالی سالون فعال</strong>
       <canvas id="financeChart"></canvas>
     </div>
 
-    <!-- دکمه‌ها -->
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-      <button onclick="openReport()" class="report-btn">📋 گزارش پایان دوره</button>
-      <button onclick="loadDemoData()" class="secondary">🔄 دیتای نمونه</button>
-      <button onclick="resetAll()" class="warning">🔃 ریست به صفر</button>
-      <button onclick="clearAll()" class="danger">🗑️ حذف همه</button>
+    <!-- دکمه‌های پایین -->
+    <div class="row" style="margin-top:16px">
+      <button onclick="showReport()">📋 گزارش این دوره</button>
+      <button class="sec" onclick="showArchive()">🗄️ آرشیف گزارش‌ها</button>
+      <button class="warn" onclick="loadDemoData()">🔄 دیتای نمونه</button>
+      <button class="danger" onclick="clearAllData()">🗑️ حذف همه داده‌ها</button>
     </div>
+    <small style="color:var(--text2)">تمامی اطلاعات در مرورگر شما ذخیره می‌شود</small>
   </div>
 </div>
 
 <!-- مودال گزارش -->
 <div class="modal-overlay" id="reportModal">
-  <div class="modal" id="reportContent">
-    <h2>📋 گزارش پایان دوره - فارم ارغندی</h2>
-    <div id="reportInner"></div>
-    <div style="display:flex;gap:10px;margin-top:16px;">
+  <div class="modal" id="reportModalContent">
+    <h3 id="reportTitle"></h3>
+    <div id="reportBody"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="gold" onclick="saveCurrentReport()">💾 ذخیره در آرشیف</button>
       <button onclick="printReport()">🖨️ پرینت</button>
-      <button onclick="downloadPDF()">📥 دانلود PDF</button>
-      <button onclick="closeReport()" class="danger">بستن</button>
+      <button class="sec" onclick="downloadReport()">📥 دانلود</button>
+      <button class="danger" onclick="closeReportModal()">بستن</button>
     </div>
   </div>
 </div>
 
+<!-- مودال آرشیف -->
+<div class="modal-overlay" id="archiveModal">
+  <div class="modal">
+    <h3>🗄️ آرشیف گزارش‌های ذخیره شده</h3>
+    <div id="archiveList"></div>
+    <button class="danger" onclick="closeArchiveModal()" style="margin-top:12px">بستن</button>
+  </div>
+</div>
+
 <script>
-(() => {
+(function() {
+  // Service Worker for PWA
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(
-      "self.addEventListener('fetch', e => { e.respondWith(fetch(e.request)) });"
-    )).catch(() => {});
+      "self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request))});"
+    )).catch(function(){});
   }
 
-  const STORAGE_KEY = 'arghandi_pro_v4';
-  let currentSalon = 'loy';
-  let data = {
-    salons: {
-      loy: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] },
-      kochni: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] }
-    },
-    partners: [],
-    globalExpenses: [],
-    globalSales: []
+  // ذخیره‌سازی
+  var DATA_KEY = 'farm_data_v6';
+  var ARCHIVE_KEY = 'farm_archive_v6';
+  
+  // حالت اولیه
+  var currentSalon = 'loy';
+  var data = {
+    loy: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] },
+    kochni: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] },
+    partners: []
   };
-  let selectedFileData = null;
+  var archiveReports = [];
 
-  function getS() { return data.salons[currentSalon]; }
-  function totalChicksAll() { return data.salons.loy.chicks + data.salons.kochni.chicks; }
-  function totalDeathsAll() { return data.salons.loy.deaths + data.salons.kochni.deaths; }
-  function allExpenses() {
-    return [...data.globalExpenses, ...data.salons.loy.expenses, ...data.salons.kochni.expenses]
-      .reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
+  // توابع کمکی
+  function getActive() { return data[currentSalon]; }
+  function formatMoney(num) {
+    return Number(num || 0).toLocaleString('fa-AF', { maximumFractionDigits: 0 }) + ' ؋';
   }
-  function allSales() {
-    return [...data.globalSales, ...data.salons.loy.sales, ...data.salons.kochni.sales]
-      .reduce((s, e) => s + (parseFloat(e.total) || 0), 0);
+  function formatNumber(num) {
+    return Number(num || 0).toLocaleString('fa-AF');
   }
-  function totalCapital() { return data.partners.reduce((s, p) => s + (parseFloat(p.capital) || 0), 0); }
-  function formatMoney(v) { return Number(v).toLocaleString('fa-AF', { maximumFractionDigits: 0 }) + ' ؋'; }
+  function getSalonName(key) { return key === 'loy' ? 'لوی سالون' : 'کوچنی سالون'; }
 
-  function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-  function load() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
+  // ذخیره و بازیابی
+  function saveData() {
+    localStorage.setItem(DATA_KEY, JSON.stringify(data));
+  }
+  function saveArchive() {
+    localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archiveReports));
+  }
+  function loadData() {
+    var saved = localStorage.getItem(DATA_KEY);
+    if (saved) {
       try {
-        const d = JSON.parse(raw);
-        data.salons = d.salons || { loy: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] }, kochni: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] } };
-        data.partners = d.partners || [];
-        data.globalExpenses = d.globalExpenses || [];
-        data.globalSales = d.globalSales || [];
-        if (!data.salons.loy) data.salons.loy = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
-        if (!data.salons.kochni) data.salons.kochni = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
-      } catch (e) { resetEmpty(); }
-    } else { resetEmpty(); }
-  }
-  function resetEmpty() {
-    data = {
-      salons: {
-        loy: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] },
-        kochni: { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] }
-      },
-      partners: [], globalExpenses: [], globalSales: []
-    };
-    save();
-  }
-
-  window.switchSalon = (s) => {
-    currentSalon = s;
-    document.querySelectorAll('.salon-tab').forEach(t => t.classList.remove('active'));
-    document.querySelector(`[data-salon="${s}"]`).classList.add('active');
-    refreshUI();
-  };
-
-  window.setPeriod = () => {
-    const v = parseInt(document.getElementById('periodNumber').value, 10);
-    if (isNaN(v) || v < 1) return alert('شماره دوره معتبر وارد کنید');
-    getS().period = v; refreshUI();
-  };
-  window.setPeriodDays = () => {
-    const v = parseInt(document.getElementById('periodDays').value, 10);
-    if (isNaN(v) || v < 1) return alert('مدت دوره معتبر وارد کنید');
-    getS().periodDays = v; refreshUI();
-  };
-  window.setDirectChicks = () => {
-    const v = parseInt(document.getElementById('directChickCount').value, 10);
-    if (isNaN(v) || v < 0) return alert('تعداد معتبر وارد کنید');
-    getS().chicks = v; document.getElementById('directChickCount').value = ''; refreshUI();
-  };
-  window.buyChicks = () => {
-    const count = parseInt(document.getElementById('newChickCount').value, 10);
-    const price = parseFloat(document.getElementById('pricePerChick').value);
-    const date = document.getElementById('chickBuyDate').value || new Date().toISOString().slice(0,10);
-    const supplier = document.getElementById('chickSupplier').value || 'نامشخص';
-    if (isNaN(count) || count <= 0 || isNaN(price) || price < 0) return alert('مقادیر را وارد کنید');
-    const total = count * price;
-    getS().chicks += count;
-    getS().expenses.push({ id: Date.now(), category: 'خرید چوچه', amount: total, date, docName: `فروشنده: ${supplier}`, docDataUrl: '' });
-    document.getElementById('newChickCount').value = ''; document.getElementById('pricePerChick').value = '';
-    document.getElementById('buyTotalDisplay').innerText = '۰ ؋'; refreshUI();
-  };
-  window.updateBuyTotal = () => {
-    const c = parseInt(document.getElementById('newChickCount').value) || 0;
-    const p = parseFloat(document.getElementById('pricePerChick').value) || 0;
-    document.getElementById('buyTotalDisplay').innerText = formatMoney(c * p);
-  };
-  window.recordDeath = () => {
-    const v = parseInt(document.getElementById('deathCount').value, 10);
-    const s = getS();
-    if (!isNaN(v) && v > 0) {
-      if (v > s.chicks - s.deaths) return alert('تلفات بیشتر از موجودی');
-      s.deaths += v; document.getElementById('deathCount').value = 0; refreshUI();
+        var parsed = JSON.parse(saved);
+        if (parsed.loy) data.loy = parsed.loy;
+        if (parsed.kochni) data.kochni = parsed.kochni;
+        if (parsed.partners) data.partners = parsed.partners;
+      } catch(e) {}
     }
-  };
-  window.handleFileSelect = (inp) => {
-    const f = inp.files[0]; const d = document.getElementById('fileNameDisplay');
-    if (f) { d.textContent = f.name; const r = new FileReader(); r.onload = (e) => { selectedFileData = { name: f.name, dataUrl: e.target.result }; }; r.readAsDataURL(f); }
-    else { d.textContent = 'انتخاب نشده'; selectedFileData = null; }
-  };
-  window.addExpense = () => {
-    const cat = document.getElementById('expenseCategory').value;
-    const amt = parseFloat(document.getElementById('expenseAmount').value);
-    const date = document.getElementById('expenseDate').value || new Date().toISOString().slice(0,10);
-    if (isNaN(amt) || amt <= 0) return alert('مبلغ وارد کنید');
-    getS().expenses.push({ id: Date.now(), category: cat, amount: amt, date, docName: selectedFileData?.name || '', docDataUrl: selectedFileData?.dataUrl || '' });
-    document.getElementById('expenseAmount').value = ''; document.getElementById('expenseDoc').value = '';
-    document.getElementById('fileNameDisplay').textContent = 'انتخاب نشده'; selectedFileData = null; refreshUI();
-  };
-  window.addSale = () => {
-    const c = parseInt(document.getElementById('saleBirdCount').value, 10);
-    const p = parseFloat(document.getElementById('salePricePerBird').value);
-    const date = document.getElementById('saleDate').value || new Date().toISOString().slice(0,10);
-    if (isNaN(c) || c <= 0 || isNaN(p) || p <= 0) return alert('مقادیر وارد کنید');
-    getS().sales.push({ id: Date.now(), birdCount: c, pricePerBird: p, total: c * p, date });
-    document.getElementById('saleBirdCount').value = ''; document.getElementById('salePricePerBird').value = ''; refreshUI();
-  };
-  window.addPartner = () => {
-    const n = document.getElementById('partnerName').value.trim();
-    const c = parseFloat(document.getElementById('partnerCapital').value);
-    if (!n || isNaN(c) || c <= 0) return alert('اسم و سرمایه وارد کنید');
-    data.partners.push({ name: n, capital: c });
-    document.getElementById('partnerName').value = ''; document.getElementById('partnerCapital').value = ''; refreshUI();
-  };
-  window.removePartner = (i) => { if (confirm('حذف؟')) { data.partners.splice(i, 1); refreshUI(); } };
-  window.editPartner = (i) => {
-    const p = data.partners[i];
-    const nn = prompt('نام:', p.name); if (nn === null) return;
-    const nc = prompt('سرمایه:', p.capital); if (nc === null) return;
-    const cn = parseFloat(nc); if (isNaN(cn) || cn <= 0) return alert('سرمایه نامعتبر');
-    data.partners[i] = { name: nn.trim() || p.name, capital: cn }; refreshUI();
-  };
-  window.deleteExpense = (i) => { if (confirm('حذف؟')) { getS().expenses.splice(i, 1); refreshUI(); } };
-  window.deleteSale = (i) => { if (confirm('حذف؟')) { getS().sales.splice(i, 1); refreshUI(); } };
+  }
+  function loadArchive() {
+    var saved = localStorage.getItem(ARCHIVE_KEY);
+    if (saved) {
+      try { archiveReports = JSON.parse(saved); } catch(e) { archiveReports = []; }
+    }
+  }
 
-  function refreshUI() {
-    const s = getS();
-    // تب‌ها
-    document.getElementById('loySummary').innerText = `${data.salons.loy.chicks.toLocaleString('fa-AF')} چوچه | دوره ${data.salons.loy.period}`;
-    document.getElementById('kochniSummary').innerText = `${data.salons.kochni.chicks.toLocaleString('fa-AF')} چوچه | دوره ${data.salons.kochni.period}`;
-    // کارت‌های سالون
-    document.getElementById('salonChicks').innerText = s.chicks.toLocaleString('fa-AF');
-    document.getElementById('salonDeaths').innerText = s.deaths.toLocaleString('fa-AF');
-    document.getElementById('salonRemaining').innerText = Math.max(0, s.chicks - s.deaths).toLocaleString('fa-AF');
-    const sExp = s.expenses.reduce((a, e) => a + (parseFloat(e.amount) || 0), 0);
-    document.getElementById('salonExpense').innerText = formatMoney(sExp);
-    document.getElementById('salonPeriod').innerText = s.period;
-    document.getElementById('salonPeriodDays').innerText = s.periodDays;
-    document.getElementById('periodNumber').value = s.period;
-    document.getElementById('periodDays').value = s.periodDays;
-    // کل
-    document.getElementById('totalChicksAll').innerText = totalChicksAll().toLocaleString('fa-AF');
-    const totSales = allSales();
-    document.getElementById('totalSalesAll').innerText = formatMoney(totSales);
-    const totExp = allExpenses();
-    const pl = totSales - totExp;
-    document.getElementById('profitLossAll').innerText = formatMoney(pl);
-    document.getElementById('headerProfitText').innerText = formatMoney(pl);
-    document.getElementById('profitLossAll').style.color = pl >= 0 ? '#4caf50' : '#ef5350';
+  // محاسبات مالی
+  function calcSalonExpenses(salon) {
+    return salon.expenses.reduce(function(sum, e) { return sum + (parseFloat(e.amount) || 0); }, 0);
+  }
+  function calcSalonSales(salon) {
+    return salon.sales.reduce(function(sum, s) { return sum + (parseFloat(s.total) || 0); }, 0);
+  }
+  function calcTotalExpenses() {
+    return calcSalonExpenses(data.loy) + calcSalonExpenses(data.kochni);
+  }
+  function calcTotalSales() {
+    return calcSalonSales(data.loy) + calcSalonSales(data.kochni);
+  }
+  function calcTotalProfit() {
+    return calcTotalSales() - calcTotalExpenses();
+  }
+  function calcTotalCapital() {
+    return data.partners.reduce(function(sum, p) { return sum + (parseFloat(p.capital) || 0); }, 0);
+  }
+
+  // تنظیم تاریخ امروز
+  function getToday() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  // رندر کامل
+  function render() {
+    var salon = getActive();
+    var salonName = getSalonName(currentSalon);
+
+    // خلاصه تب‌ها
+    document.getElementById('loySummary').textContent = formatNumber(data.loy.chicks) + ' چوچه | دوره ' + data.loy.period;
+    document.getElementById('kochniSummary').textContent = formatNumber(data.kochni.chicks) + ' چوچه | دوره ' + data.kochni.period;
+
+    // کارت‌های سالون فعال
+    document.getElementById('activeSalonCards').innerHTML =
+      '<div class="card"><div class="icon">🐣</div><div class="value">' + formatNumber(salon.chicks) + '</div><div class="label">چوچه‌های ' + salonName + '</div></div>' +
+      '<div class="card"><div class="icon">💀</div><div class="value">' + formatNumber(salon.deaths) + '</div><div class="label">تلفات ' + salonName + '</div></div>' +
+      '<div class="card"><div class="icon">🐓</div><div class="value">' + formatNumber(Math.max(0, salon.chicks - salon.deaths)) + '</div><div class="label">موجودی زنده</div></div>' +
+      '<div class="card"><div class="icon">💸</div><div class="value">' + formatMoney(calcSalonExpenses(salon)) + '</div><div class="label">مصارف ' + salonName + '</div></div>' +
+      '<div class="card"><div class="icon">📅</div><div class="value">' + salon.period + '</div><div class="label">دوره فعلی</div></div>' +
+      '<div class="card"><div class="icon">⏱</div><div class="value">' + salon.periodDays + '</div><div class="label">روز دوره</div></div>';
+
+    // کارت‌های مجموعی
+    document.getElementById('allChicks').textContent = formatNumber(data.loy.chicks + data.kochni.chicks);
+    document.getElementById('allSales').textContent = formatMoney(calcTotalSales());
+    document.getElementById('allPL').textContent = formatMoney(calcTotalProfit());
+    document.getElementById('headerProfit').textContent = formatMoney(calcTotalProfit());
+
+    // فیلدهای دوره
+    document.getElementById('periodNum').value = salon.period;
+    document.getElementById('periodDaysInp').value = salon.periodDays;
+
     // شرکا
-    document.getElementById('totalCapital').innerText = formatMoney(totalCapital());
-    const pc = document.getElementById('partnersContainer');
-    pc.innerHTML = data.partners.length === 0 ? '<div style="color:#889;padding:8px;">هیچ شریکی ثبت نشده</div>' :
-      data.partners.map((p, i) => `<div class="partner-card">
-        <strong>${p.name}</strong> | ${formatMoney(p.capital)} (${totalCapital() > 0 ? ((p.capital/totalCapital())*100).toFixed(1) : 0}٪)
-        <span style="margin-right:auto;display:flex;gap:6px;">
-          <button onclick="window.editPartner(${i})" style="padding:4px 10px;font-size:0.75rem;">✎</button>
-          <button onclick="window.removePartner(${i})" style="background:#c62828;padding:4px 10px;font-size:0.75rem;">✕</button>
-        </span>
-      </div>`).join('');
+    var capital = calcTotalCapital();
+    document.getElementById('totalCapitalDisplay').textContent = formatMoney(capital);
+    var partnersHTML = '';
+    if (data.partners.length === 0) {
+      partnersHTML = '<div style="color:var(--text2);padding:8px;">هیچ شریکی ثبت نشده</div>';
+    } else {
+      data.partners.forEach(function(p, i) {
+        var share = capital > 0 ? ((p.capital / capital) * 100).toFixed(1) : '0';
+        partnersHTML += '<div class="list-item">' +
+          '<span><strong>' + p.name + '</strong> | سرمایه: ' + formatMoney(p.capital) + ' | سهم: ' + share + '٪</span>' +
+          '<span>' +
+            '<button onclick="editPartner(' + i + ')" style="padding:4px 8px;font-size:0.7rem;">✎</button> ' +
+            '<button onclick="deletePartner(' + i + ')" style="padding:4px 8px;font-size:0.7rem;background:#c62828;">✕</button>' +
+          '</span>' +
+        '</div>';
+      });
+    }
+    document.getElementById('partnersContainer').innerHTML = partnersHTML;
+
     // لیست مصارف
-    const ec = document.getElementById('expenseListContainer');
-    ec.innerHTML = s.expenses.length === 0 ? '<div style="color:#889;text-align:center;padding:12px;">مصرفی ثبت نشده</div>' :
-      s.expenses.slice().reverse().map((e, i) => {
-        const oi = s.expenses.length - 1 - i;
-        return `<div class="list-item"><span>${e.category} ${e.docName ? `<span class="badge">📎 ${e.docName}</span>` : ''} <small>${e.date}</small></span>
-          <span><strong>${formatMoney(e.amount)}</strong> <button onclick="window.deleteExpense(${oi})" style="padding:2px 8px;font-size:0.7rem;">✕</button></span></div>`;
-      }).join('');
+    var expHTML = '';
+    if (salon.expenses.length === 0) {
+      expHTML = '<div style="color:var(--text2);text-align:center;padding:12px;">مصرفی ثبت نشده</div>';
+    } else {
+      salon.expenses.slice().reverse().forEach(function(e, idx) {
+        var originalIndex = salon.expenses.length - 1 - idx;
+        expHTML += '<div class="list-item">' +
+          '<span><strong>' + e.category + '</strong> <small>' + e.date + '</small></span>' +
+          '<span>' + formatMoney(e.amount) +
+            ' <button onclick="deleteExpense(' + originalIndex + ')" style="padding:2px 6px;font-size:0.65rem;background:#c62828;">✕</button>' +
+          '</span>' +
+        '</div>';
+      });
+    }
+    document.getElementById('expenseList').innerHTML = expHTML;
+
     // لیست فروش
-    const sc = document.getElementById('saleListContainer');
-    sc.innerHTML = s.sales.length === 0 ? '<div style="color:#889;text-align:center;padding:12px;">فروشی ثبت نشده</div>' :
-      s.sales.slice().reverse().map((e, i) => {
-        const oi = s.sales.length - 1 - i;
-        return `<div class="list-item"><span>🐔 ${e.birdCount} عدد × ${formatMoney(e.pricePerBird)} <small>${e.date}</small></span>
-          <span><strong>${formatMoney(e.total)}</strong> <button onclick="window.deleteSale(${oi})" style="padding:2px 8px;font-size:0.7rem;">✕</button></span></div>`;
-      }).join('');
+    var saleHTML = '';
+    if (salon.sales.length === 0) {
+      saleHTML = '<div style="color:var(--text2);text-align:center;padding:12px;">فروشی ثبت نشده</div>';
+    } else {
+      salon.sales.slice().reverse().forEach(function(s, idx) {
+        var originalIndex = salon.sales.length - 1 - idx;
+        saleHTML += '<div class="list-item">' +
+          '<span>🐔 <strong>' + s.birdCount + ' عدد</strong> × ' + formatMoney(s.pricePerBird) + ' <small>' + s.date + '</small></span>' +
+          '<span>' + formatMoney(s.total) +
+            ' <button onclick="deleteSale(' + originalIndex + ')" style="padding:2px 6px;font-size:0.65rem;background:#c62828;">✕</button>' +
+          '</span>' +
+        '</div>';
+      });
+    }
+    document.getElementById('saleList').innerHTML = saleHTML;
+
+    // نمودار
     drawChart();
-    save();
+    
+    // ذخیره
+    saveData();
   }
 
+  // نمودار
   function drawChart() {
-    const cv = document.getElementById('financeChart');
-    if (!cv) return;
-    const ctx = cv.getContext('2d');
-    cv.width = Math.max(300, cv.parentElement.clientWidth - 40);
-    cv.height = 180;
-    const s = getS();
-    const ev = s.expenses.reduce((a, e) => a + (parseFloat(e.amount) || 0), 0);
-    const sv = s.sales.reduce((a, e) => a + (parseFloat(e.total) || 0), 0);
-    const pv = sv - ev;
-    const vals = [ev, sv, pv];
-    const labels = ['مصارف', 'فروش', 'فایده'];
-    const colors = ['#ef5350', '#4caf50', pv >= 0 ? '#ffb300' : '#ef5350'];
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    const bw = Math.min(60, (cv.width - 80) / 3);
-    const sx = (cv.width - (bw * 3 + 50)) / 2 + 20;
-    const mx = Math.max(ev, sv, Math.abs(pv), 1);
-    for (let i = 0; i < 3; i++) {
-      const h = Math.abs(vals[i]) / mx * 110;
-      const x = sx + i * (bw + 20);
-      const y = 140 - Math.max(10, h);
+    var canvas = document.getElementById('financeChart');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var width = Math.max(300, canvas.parentElement.clientWidth - 40);
+    canvas.width = width;
+    canvas.height = 180;
+    
+    var salon = getActive();
+    var exp = calcSalonExpenses(salon);
+    var sal = calcSalonSales(salon);
+    var prof = sal - exp;
+    
+    var values = [exp, sal, prof];
+    var labels = ['مصارف', 'فروش', 'فایده/تاوان'];
+    var colors = ['#ef5350', '#4caf50', prof >= 0 ? '#ffb300' : '#ef5350'];
+    var maxVal = Math.max(exp, sal, Math.abs(prof), 1);
+    
+    ctx.clearRect(0, 0, width, 180);
+    var barWidth = Math.min(55, (width - 80) / 3);
+    var startX = (width - (barWidth * 3 + 50)) / 2 + 20;
+    
+    for (var i = 0; i < 3; i++) {
+      var barHeight = Math.abs(values[i]) / maxVal * 110;
+      var x = startX + i * (barWidth + 20);
+      var y = 145 - Math.max(8, barHeight);
+      
       ctx.fillStyle = colors[i];
-      ctx.fillRect(x, y, bw, Math.max(10, h));
-      ctx.fillStyle = '#fff'; ctx.font = 'bold 11px "Segoe UI"'; ctx.textAlign = 'center';
-      ctx.fillText(labels[i], x + bw / 2, 155);
-      ctx.fillText(formatMoney(vals[i]), x + bw / 2, y - 6);
+      ctx.fillRect(x, y, barWidth, Math.max(8, barHeight));
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 10px Tahoma';
+      ctx.textAlign = 'center';
+      ctx.fillText(labels[i], x + barWidth / 2, 162);
+      ctx.fillText(formatMoney(values[i]), x + barWidth / 2, y - 5);
     }
   }
 
-  // گزارش
-  window.openReport = () => {
-    const s = getS();
-    const sn = currentSalon === 'loy' ? 'لوی سالون' : 'کوچنی سالون';
-    const exp = s.expenses.reduce((a, e) => a + (parseFloat(e.amount) || 0), 0);
-    const sal = s.sales.reduce((a, e) => a + (parseFloat(e.total) || 0), 0);
-    const pl = sal - exp;
-    const html = `
-      <p><strong>سالون:</strong> ${sn} | <strong>دوره:</strong> ${s.period} | <strong>مدت:</strong> ${s.periodDays} روز</p>
-      <table><tr><th>شرح</th><th>مقدار</th></tr>
-        <tr><td>چوچه اولیه</td><td>${s.chicks.toLocaleString('fa-AF')}</td></tr>
-        <tr><td>تلفات</td><td>${s.deaths.toLocaleString('fa-AF')}</td></tr>
-        <tr><td>موجودی</td><td>${Math.max(0, s.chicks - s.deaths).toLocaleString('fa-AF')}</td></tr>
-        <tr><td>مصارف کل</td><td>${formatMoney(exp)}</td></tr>
-        <tr><td>فروش کل</td><td>${formatMoney(sal)}</td></tr>
-        <tr><td>فایده/تاوان</td><td style="color:${pl>=0?'#4caf50':'#ef5350'}">${formatMoney(pl)}</td></tr>
-        <tr><td>تعداد شرکا</td><td>${data.partners.length}</td></tr>
-        <tr><td>سرمایه کل</td><td>${formatMoney(totalCapital())}</td></tr>
-      </table>
-      <h3>لیست مصارف</h3>
-      ${s.expenses.map(e => `<div>${e.category}: ${formatMoney(e.amount)} - ${e.date}</div>`).join('') || 'ندارد'}
-      <h3>لیست فروش</h3>
-      ${s.sales.map(e => `<div>${e.birdCount} عدد × ${formatMoney(e.pricePerBird)} = ${formatMoney(e.total)} - ${e.date}</div>`).join('') || 'ندارد'}
-    `;
-    document.getElementById('reportInner').innerHTML = html;
-    document.getElementById('reportModal').classList.add('active');
-  };
-  window.closeReport = () => { document.getElementById('reportModal').classList.remove('active'); };
-  window.printReport = () => { window.print(); };
-  window.downloadPDF = () => {
-    const content = document.getElementById('reportContent').innerText;
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = `گزارش_فارم_ارغندی_${new Date().toISOString().slice(0,10)}.txt`;
-    a.click(); URL.revokeObjectURL(url);
-    alert('گزارش دانلود شد. برای PDF کامل میتوانید از پرینت استفاده کنید.');
+  // تغییر سالون
+  window.changeSalon = function(salonKey) {
+    currentSalon = salonKey;
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelector('[data-salon="' + salonKey + '"]').classList.add('active');
+    render();
   };
 
-  window.loadDemoData = () => {
-    if (!confirm('دیتای نمونه بارگذاری شود؟')) return;
-    data.salons.loy = { chicks: 7000, deaths: 30, period: 3, periodDays: 45, expenses: [
-      { id: 1, category: 'غذا', amount: 12500, date: '2026-05-10', docName: '', docDataUrl: '' },
-      { id: 2, category: 'واکسین', amount: 3200, date: '2026-05-09', docName: '', docDataUrl: '' }
-    ], sales: [
-      { id: 10, birdCount: 200, pricePerBird: 220, total: 44000, date: '2026-05-12' }
-    ]};
-    data.salons.kochni = { chicks: 5000, deaths: 15, period: 2, periodDays: 50, expenses: [
-      { id: 3, category: 'ذغال', amount: 1800, date: '2026-05-08', docName: '', docDataUrl: '' }
-    ], sales: [] };
-    data.partners = [{ name: 'احمد', capital: 200000 }, { name: 'محمود', capital: 500000 }];
+  // تنظیم دوره
+  window.setPeriod = function() {
+    var val = parseInt(document.getElementById('periodNum').value);
+    if (val > 0) { getActive().period = val; render(); }
+  };
+  window.setPeriodDays = function() {
+    var val = parseInt(document.getElementById('periodDaysInp').value);
+    if (val > 0) { getActive().periodDays = val; render(); }
+  };
+
+  // خرید چوچه
+  window.buyChicks = function() {
+    var count = parseInt(document.getElementById('buyCount').value);
+    var price = parseFloat(document.getElementById('buyPrice').value);
+    var date = document.getElementById('buyDate').value || getToday();
+    var supplier = document.getElementById('buySupplier').value || 'نامشخص';
+    
+    if (!count || count <= 0 || isNaN(price) || price < 0) {
+      alert('لطفاً تعداد و قیمت را وارد کنید');
+      return;
+    }
+    
+    var totalCost = count * price;
+    getActive().chicks += count;
+    getActive().expenses.push({
+      id: Date.now(),
+      category: 'خرید چوچه',
+      amount: totalCost,
+      date: date,
+      note: 'فروشنده: ' + supplier
+    });
+    
+    document.getElementById('buyCount').value = '';
+    document.getElementById('buyPrice').value = '';
+    document.getElementById('buyTotalDisplay').textContent = '۰ ؋';
+    render();
+  };
+
+  window.calcBuyTotal = function() {
+    var c = parseInt(document.getElementById('buyCount').value) || 0;
+    var p = parseFloat(document.getElementById('buyPrice').value) || 0;
+    document.getElementById('buyTotalDisplay').textContent = formatMoney(c * p);
+  };
+
+  window.setChicksDirect = function() {
+    var val = parseInt(document.getElementById('directChicks').value);
+    if (val >= 0) {
+      getActive().chicks = val;
+      document.getElementById('directChicks').value = '';
+      render();
+    }
+  };
+
+  // تلفات
+  window.recordDeath = function() {
+    var val = parseInt(document.getElementById('deathInput').value);
+    var salon = getActive();
+    if (val > 0 && val <= (salon.chicks - salon.deaths)) {
+      salon.deaths += val;
+      document.getElementById('deathInput').value = '';
+      render();
+    } else {
+      alert('عدد نامعتبر یا بیشتر از موجودی');
+    }
+  };
+
+  // مصارف
+  window.addExpense = function() {
+    var cat = document.getElementById('expCat').value;
+    var amt = parseFloat(document.getElementById('expAmt').value);
+    var date = document.getElementById('expDate').value || getToday();
+    
+    if (!amt || amt <= 0) { alert('مبلغ را وارد کنید'); return; }
+    
+    getActive().expenses.push({
+      id: Date.now(),
+      category: cat,
+      amount: amt,
+      date: date,
+      note: ''
+    });
+    
+    document.getElementById('expAmt').value = '';
+    render();
+  };
+
+  window.deleteExpense = function(index) {
+    if (confirm('این مصرف حذف شود؟')) {
+      getActive().expenses.splice(index, 1);
+      render();
+    }
+  };
+
+  // فروش
+  window.addSale = function() {
+    var count = parseInt(document.getElementById('saleCount').value);
+    var price = parseFloat(document.getElementById('salePrice').value);
+    var date = document.getElementById('saleDateInput').value || getToday();
+    
+    if (!count || count <= 0 || !price || price <= 0) {
+      alert('تعداد و قیمت را وارد کنید');
+      return;
+    }
+    
+    getActive().sales.push({
+      id: Date.now(),
+      birdCount: count,
+      pricePerBird: price,
+      total: count * price,
+      date: date
+    });
+    
+    document.getElementById('saleCount').value = '';
+    document.getElementById('salePrice').value = '';
+    render();
+  };
+
+  window.deleteSale = function(index) {
+    if (confirm('این فروش حذف شود؟')) {
+      getActive().sales.splice(index, 1);
+      render();
+    }
+  };
+
+  // شرکا
+  window.addPartner = function() {
+    var name = document.getElementById('partnerName').value.trim();
+    var capital = parseFloat(document.getElementById('partnerCapital').value);
+    
+    if (!name || !capital || capital <= 0) {
+      alert('نام و سرمایه را وارد کنید');
+      return;
+    }
+    
+    data.partners.push({ name: name, capital: capital });
+    document.getElementById('partnerName').value = '';
+    document.getElementById('partnerCapital').value = '';
+    render();
+  };
+
+  window.editPartner = function(index) {
+    var p = data.partners[index];
+    var name = prompt('نام شریک:', p.name);
+    if (name === null) return;
+    var capital = prompt('سرمایه:', p.capital);
+    if (capital === null) return;
+    capital = parseFloat(capital);
+    if (capital > 0) {
+      data.partners[index] = { name: name.trim() || p.name, capital: capital };
+      render();
+    }
+  };
+
+  window.deletePartner = function(index) {
+    if (confirm('این شریک حذف شود؟')) {
+      data.partners.splice(index, 1);
+      render();
+    }
+  };
+
+  // تولید گزارش
+  function generateReportHTML(salonKey) {
+    var salon = data[salonKey];
+    var salonName = getSalonName(salonKey);
+    var exp = calcSalonExpenses(salon);
+    var sal = calcSalonSales(salon);
+    var prof = sal - exp;
+    var capital = calcTotalCapital();
+    
+    var html = '<p><strong>سالون:</strong> ' + salonName + ' | <strong>دوره:</strong> ' + salon.period + ' | <strong>مدت:</strong> ' + salon.periodDays + ' روز</p>';
+    html += '<p><strong>تاریخ گزارش:</strong> ' + new Date().toLocaleString('fa-AF') + '</p>';
+    
+    html += '<table>';
+    html += '<tr><th>شرح</th><th>مقدار</th></tr>';
+    html += '<tr><td>چوچه‌ها</td><td>' + formatNumber(salon.chicks) + '</td></tr>';
+    html += '<tr><td>تلفات</td><td>' + formatNumber(salon.deaths) + '</td></tr>';
+    html += '<tr><td>موجودی زنده</td><td>' + formatNumber(Math.max(0, salon.chicks - salon.deaths)) + '</td></tr>';
+    html += '<tr><td>مصارف کل</td><td>' + formatMoney(exp) + '</td></tr>';
+    html += '<tr><td>فروش کل</td><td>' + formatMoney(sal) + '</td></tr>';
+    html += '<tr><td style="font-weight:bold;">فایده/تاوان</td><td style="color:' + (prof >= 0 ? '#4caf50' : '#ef5350') + ';font-weight:bold;">' + formatMoney(prof) + '</td></tr>';
+    html += '<tr><td>تعداد شرکا</td><td>' + data.partners.length + ' نفر</td></tr>';
+    html += '<tr><td>سرمایه کل</td><td>' + formatMoney(capital) + '</td></tr>';
+    html += '</table>';
+    
+    html += '<h4 style="margin-top:12px;">لیست مصارف:</h4>';
+    if (salon.expenses.length === 0) html += '<p>ندارد</p>';
+    else salon.expenses.forEach(function(e) {
+      html += '<div style="padding:4px 0;border-bottom:1px solid var(--border);">' + e.category + ': ' + formatMoney(e.amount) + ' - ' + e.date + '</div>';
+    });
+    
+    html += '<h4 style="margin-top:12px;">لیست فروش:</h4>';
+    if (salon.sales.length === 0) html += '<p>ندارد</p>';
+    else salon.sales.forEach(function(s) {
+      html += '<div style="padding:4px 0;border-bottom:1px solid var(--border);">' + s.birdCount + ' عدد × ' + formatMoney(s.pricePerBird) + ' = ' + formatMoney(s.total) + ' - ' + s.date + '</div>';
+    });
+    
+    html += '<h4 style="margin-top:12px;">شرکا:</h4>';
+    if (data.partners.length === 0) html += '<p>ندارد</p>';
+    else data.partners.forEach(function(p) {
+      html += '<div>' + p.name + ': ' + formatMoney(p.capital) + ' (' + (capital > 0 ? ((p.capital / capital) * 100).toFixed(1) : '0') + '٪)</div>';
+    });
+    
+    return html;
+  }
+
+  // باز کردن گزارش
+  window.showReport = function() {
+    document.getElementById('reportTitle').textContent = 'گزارش پایان دوره - ' + getSalonName(currentSalon);
+    document.getElementById('reportBody').innerHTML = generateReportHTML(currentSalon);
+    document.getElementById('reportModal').classList.add('show');
+  };
+
+  window.closeReportModal = function() {
+    document.getElementById('reportModal').classList.remove('show');
+  };
+
+  // ذخیره گزارش
+  window.saveCurrentReport = function() {
+    var salon = getActive();
+    var report = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      salonName: getSalonName(currentSalon),
+      salonKey: currentSalon,
+      period: salon.period,
+      periodDays: salon.periodDays,
+      chicks: salon.chicks,
+      deaths: salon.deaths,
+      expenses: JSON.parse(JSON.stringify(salon.expenses)),
+      sales: JSON.parse(JSON.stringify(salon.sales)),
+      partners: JSON.parse(JSON.stringify(data.partners)),
+      totalExpense: calcSalonExpenses(salon),
+      totalSales: calcSalonSales(salon),
+      profitLoss: calcSalonSales(salon) - calcSalonExpenses(salon),
+      totalCapital: calcTotalCapital(),
+      html: generateReportHTML(currentSalon)
+    };
+    
+    archiveReports.unshift(report);
+    if (archiveReports.length > 50) archiveReports = archiveReports.slice(0, 50);
+    saveArchive();
+    alert('✅ گزارش با موفقیت در آرشیف ذخیره شد!');
+    closeReportModal();
+  };
+
+  window.printReport = function() { window.print(); };
+  
+  window.downloadReport = function() {
+    var text = document.getElementById('reportBody').innerText;
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'گزارش_فارم_ارغندی_' + getToday() + '.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // آرشیف
+  window.showArchive = function() {
+    var container = document.getElementById('archiveList');
+    if (archiveReports.length === 0) {
+      container.innerHTML = '<p style="color:var(--text2);text-align:center;padding:20px;">هیچ گزارشی ذخیره نشده است</p>';
+    } else {
+      container.innerHTML = archiveReports.map(function(r, i) {
+        return '<div class="list-item" style="margin-bottom:8px;">' +
+          '<div>' +
+            '<strong style="color:#ffb300;">' + r.salonName + '</strong> | دوره ' + r.period + ' | ' + r.periodDays + ' روز<br>' +
+            '<small>📅 ' + new Date(r.date).toLocaleString('fa-AF') + '</small><br>' +
+            '<small>🐣 ' + formatNumber(r.chicks) + ' | 💀 ' + formatNumber(r.deaths) + ' | 💸 ' + formatMoney(r.totalExpense) + ' | 🛒 ' + formatMoney(r.totalSales) + '</small><br>' +
+            '<strong style="color:' + (r.profitLoss >= 0 ? '#4caf50' : '#ef5350') + ';">⚖️ ' + formatMoney(r.profitLoss) + '</strong>' +
+          '</div>' +
+          '<div style="display:flex;gap:4px;">' +
+            '<button onclick="viewArchiveReport(' + i + ')" style="padding:4px 8px;font-size:0.7rem;">👁️</button>' +
+            '<button onclick="downloadArchiveReport(' + i + ')" style="padding:4px 8px;font-size:0.7rem;background:#1565c0;">📥</button>' +
+            '<button onclick="deleteArchiveReport(' + i + ')" style="padding:4px 8px;font-size:0.7rem;background:#c62828;">🗑️</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+    document.getElementById('archiveModal').classList.add('show');
+  };
+
+  window.closeArchiveModal = function() {
+    document.getElementById('archiveModal').classList.remove('show');
+  };
+
+  window.viewArchiveReport = function(index) {
+    var r = archiveReports[index];
+    document.getElementById('reportTitle').textContent = r.salonName + ' (آرشیوی)';
+    document.getElementById('reportBody').innerHTML = r.html;
+    document.getElementById('reportModal').classList.add('show');
+  };
+
+  window.downloadArchiveReport = function(index) {
+    var r = archiveReports[index];
+    var text = r.html.replace(/<[^>]+>/g, '');
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'گزارش_' + r.salonName + '_دوره_' + r.period + '.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  window.deleteArchiveReport = function(index) {
+    if (confirm('این گزارش از آرشیف حذف شود؟')) {
+      archiveReports.splice(index, 1);
+      saveArchive();
+      showArchive();
+    }
+  };
+
+  // دیتای نمونه
+  window.loadDemoData = function() {
+    if (!confirm('دیتای نمونه بارگذاری شود؟ اطلاعات فعلی جایگزین می‌شوند.')) return;
+    
+    data.loy = {
+      chicks: 7000, deaths: 30, period: 3, periodDays: 45,
+      expenses: [
+        { id: 1, category: 'غذا', amount: 12500, date: '2026-05-10', note: '' },
+        { id: 2, category: 'واکسین', amount: 3200, date: '2026-05-09', note: '' },
+        { id: 3, category: 'معاش کارمند', amount: 15000, date: '2026-05-08', note: '' }
+      ],
+      sales: [
+        { id: 1, birdCount: 200, pricePerBird: 220, total: 44000, date: '2026-05-12' },
+        { id: 2, birdCount: 150, pricePerBird: 215, total: 32250, date: '2026-05-11' }
+      ]
+    };
+    
+    data.kochni = {
+      chicks: 5000, deaths: 15, period: 2, periodDays: 50,
+      expenses: [
+        { id: 1, category: 'ذغال', amount: 1800, date: '2026-05-08', note: '' },
+        { id: 2, category: 'کود', amount: 2500, date: '2026-05-07', note: '' }
+      ],
+      sales: [
+        { id: 1, birdCount: 100, pricePerBird: 210, total: 21000, date: '2026-05-10' }
+      ]
+    };
+    
+    data.partners = [
+      { name: 'احمد', capital: 200000 },
+      { name: 'محمود', capital: 500000 },
+      { name: 'کریم', capital: 300000 }
+    ];
+    
     currentSalon = 'loy';
-    document.querySelectorAll('.salon-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
     document.querySelector('[data-salon="loy"]').classList.add('active');
-    refreshUI();
+    render();
   };
-  window.resetAll = () => { if (confirm('همه داده‌ها صفر شود؟')) { resetEmpty(); currentSalon = 'loy'; refreshUI(); } };
-  window.clearAll = () => { if (confirm('حذف کامل؟')) { localStorage.removeItem(STORAGE_KEY); resetEmpty(); currentSalon = 'loy'; refreshUI(); } };
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const today = new Date().toISOString().slice(0, 10);
-    document.getElementById('expenseDate').value = today;
-    document.getElementById('saleDate').value = today;
-    document.getElementById('chickBuyDate').value = today;
-    load();
-    document.querySelectorAll('.salon-tab').forEach(t => t.classList.remove('active'));
-    document.querySelector(`[data-salon="${currentSalon}"]`)?.classList.add('active');
-    refreshUI();
-  });
+  // حذف همه
+  window.clearAllData = function() {
+    if (!confirm('آیا مطمئن هستید؟ همه داده‌ها از جمله گزارش‌های آرشیوی حذف می‌شوند.')) return;
+    
+    data.loy = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
+    data.kochni = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
+    data.partners = [];
+    archiveReports = [];
+    
+    localStorage.removeItem(DATA_KEY);
+    localStorage.removeItem(ARCHIVE_KEY);
+    
+    currentSalon = 'loy';
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelector('[data-salon="loy"]').classList.add('active');
+    render();
+  };
+
+  // راه‌اندازی
+  function init() {
+    var today = getToday();
+    document.getElementById('buyDate').value = today;
+    document.getElementById('expDate').value = today;
+    document.getElementById('saleDateInput').value = today;
+    
+    loadData();
+    loadArchive();
+    
+    // اطمینان از وجود سالون‌ها
+    if (!data.loy) data.loy = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
+    if (!data.kochni) data.kochni = { chicks: 0, deaths: 0, period: 1, periodDays: 45, expenses: [], sales: [] };
+    if (!data.partners) data.partners = [];
+    
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelector('[data-salon="loy"]').classList.add('active');
+    currentSalon = 'loy';
+    
+    render();
+  }
+
+  // اجرا
+  init();
+
+  // expose functions to global scope
+  window.changeSalon = window.changeSalon;
+  window.setPeriod = window.setPeriod;
+  window.setPeriodDays = window.setPeriodDays;
+  window.buyChicks = window.buyChicks;
+  window.calcBuyTotal = window.calcBuyTotal;
+  window.setChicksDirect = window.setChicksDirect;
+  window.recordDeath = window.recordDeath;
+  window.addExpense = window.addExpense;
+  window.deleteExpense = window.deleteExpense;
+  window.addSale = window.addSale;
+  window.deleteSale = window.deleteSale;
+  window.addPartner = window.addPartner;
+  window.editPartner = window.editPartner;
+  window.deletePartner = window.deletePartner;
+  window.showReport = window.showReport;
+  window.closeReportModal = window.closeReportModal;
+  window.saveCurrentReport = window.saveCurrentReport;
+  window.printReport = window.printReport;
+  window.downloadReport = window.downloadReport;
+  window.showArchive = window.showArchive;
+  window.closeArchiveModal = window.closeArchiveModal;
+  window.viewArchiveReport = window.viewArchiveReport;
+  window.downloadArchiveReport = window.downloadArchiveReport;
+  window.deleteArchiveReport = window.deleteArchiveReport;
+  window.loadDemoData = window.loadDemoData;
+  window.clearAllData = window.clearAllData;
+
 })();
 </script>
 </body>
